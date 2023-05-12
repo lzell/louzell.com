@@ -1,3 +1,11 @@
+## 2023-05-12  
+### (emacs, org mode, sort by todo status)  
+  :: Highlight the list to sort using C-space and movement keys  
+  C-c ^ o  
+  
+### (emacs, org mode, add deadline to todo item)  
+  C-c C-d  
+  
 ## 2023-05-07  
 ### (emacs, read changed file from disk, reload buffer)  
   M-x revert-buffer  
