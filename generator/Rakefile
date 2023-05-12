@@ -1,0 +1,129 @@
+# Usage:
+#
+# 1. Add to the publish_manifest.txt any file from the ~/notes dir that I want to make public
+# 2. Run `cd generator && rake` to generate <project-dir>/markdown (containing markdown) and <project-dir>/www (containing html)
+# 3. Push <project-dir>/markdown to github
+# 4. rsync <project-dir>/www to louzell.com with `rake deploy`
+#
+require "erb"
+require "debug"
+begin
+  require "colorize"
+rescue LoadError => err
+  STDERR.puts "Please run `gem install colorize` first. Or run `bundle install`"
+  exit 1
+end
+
+
+SOURCE_PATH = File.expand_path "~/notes"
+DESTINATION_PATH_MARKDOWN = File.expand_path "../markdown"
+DESTINATION_PATH_HTML = File.expand_path "../www"
+DESTINATION_PATH_MARKDOWN_NOTES = File.join DESTINATION_PATH_MARKDOWN, "notes"
+DESTINATION_PATH_HTML_NOTES = File.join DESTINATION_PATH_HTML, "notes"
+INDEX_TEMPLATE_PATH = File.expand_path "index.md.erb"
+INDEX_DESTINATION_PATH = File.join DESTINATION_PATH_MARKDOWN, "index.md"
+PUBLISH_MANIFEST_FILE = File.expand_path "publish_manifest.txt"
+
+
+# File index.md.erb becomes index.md which becomes index.html on louzell.com.
+# The index file contains links to all notes that are in the publish manifest.
+desc "Write index.md from the index.md.erb template"
+task :write_index do
+  puts "Writing #{INDEX_DESTINATION_PATH} from #{INDEX_TEMPLATE_PATH}".green
+  file_list_as_markdown = files_in_manifest
+    .map(&method(:trim_md_extension))
+    .map { |basename| "[#{basename} notes](notes/#{basename}.html)" }
+    .join("\n")
+  result = ERB.new(File.read(INDEX_TEMPLATE_PATH)).result(binding)
+  File.write(INDEX_DESTINATION_PATH, result)
+end
+
+
+# Remove generated index.md
+# Remove all markdown files copied in from ~/notes
+# Remove all generated html from <project-dir>/www
+desc "Clean"
+task :clean do
+  puts "Cleaning artifacts".green
+  files_to_remove = [
+    *Dir.glob(File.join(DESTINATION_PATH_MARKDOWN, "**/*.md")),
+    *Dir.glob(File.join(DESTINATION_PATH_HTML, "**/*.{html,css,js}")),
+  ]
+  FileUtils::Verbose.rm files_to_remove unless files_to_remove.empty?
+end
+
+
+# Copies files from ~/notes/ (where my personal note collection is) to <project-dir>/markdown/notes/
+desc "Copy files from ~/notes to ~/dev/louzell.com/markdown "
+task :copy_files => [:clean, :write_index] do
+  files_to_copy = files_in_manifest
+  puts "Copying #{files_to_copy} from #{SOURCE_PATH} to #{DESTINATION_PATH_MARKDOWN_NOTES}".green
+  files_to_copy.each do |f|
+    source = File.join SOURCE_PATH, f
+    destination = File.join DESTINATION_PATH_MARKDOWN_NOTES, f
+    FileUtils::Verbose.cp source, destination
+  end
+end
+
+
+# Adds two spaces to the end of all markdown to render the exported html
+# in approximately the same form as the files on disk.
+desc "Add two spaces to the end of all markdown files."
+task :preprocess => [:copy_files] do
+  cmd =<<-END
+    cd #{DESTINATION_PATH_MARKDOWN}
+    sed -i '' 's/$/  /g' "#{INDEX_DESTINATION_PATH}"
+    cd #{DESTINATION_PATH_MARKDOWN_NOTES}
+    xargs sed -i '' 's/$/  /g' < "#{PUBLISH_MANIFEST_FILE}"
+  END
+  system cmd, exception: true
+end
+
+
+# Generate html, populating the <project-dir>/www directory
+desc "Generate html by processing all markdown files with pandoc"
+task :generate_html => [:preprocess] do
+  FileUtils::Verbose.mkdir_p DESTINATION_PATH_HTML_NOTES
+
+  generate_index_html =<<-END
+    cd #{DESTINATION_PATH_MARKDOWN}
+    pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="Lou Zell's notes" --variable title="" -H "../assets/notes.css" "index.md" > "#{DESTINATION_PATH_HTML}/index.html"
+  END
+
+  generate_html_of_manifest_files =<<-END
+    cd #{DESTINATION_PATH_MARKDOWN_NOTES}
+    while IFS= read -r f
+    do
+      pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" -H "../../assets/notes.js" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
+    done < "#{PUBLISH_MANIFEST_FILE}"
+  END
+
+  puts "Saving index.html at #{DESTINATION_PATH_HTML}".green
+  system generate_index_html, exception: true
+  puts "Saving html for all files in publish manifest. Find them at #{DESTINATION_PATH_HTML_NOTES}".green
+  system generate_html_of_manifest_files, exception: true
+end
+
+
+# Deploys <project-dir>/www to www.louzell.com
+# Requires public ssh keys to be added to infra/bootstrap.userdata.template
+desc "Deploy generated html to louzell.com"
+task :deploy => [:generate_html] do
+  cmd = %{
+    cd #{DESTINATION_PATH_HTML}
+    rsync -Lavz -e "ssh -l ec2-user -p 5083" ./ ec2-user@louzell:/srv/www/louzell.com/ --delete
+  }
+  system cmd, exception: true
+end
+
+
+private
+  def trim_md_extension(x)
+    return File.basename(x, ".md")
+  end
+
+  def files_in_manifest
+    return File.read(PUBLISH_MANIFEST_FILE).split("\n")
+  end
+
+task default: :generate_html

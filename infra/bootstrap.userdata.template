@@ -1,0 +1,98 @@
+#!/bin/bash
+#
+# ----------------------------------
+# This bootstrap script runs as root
+# ----------------------------------
+#
+
+# Add public keys here for anyone that needs to ssh into the box as ec2-user
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDcUS1xemYLEBx/saOr/0Y5F6PU2zs1nKs28++KOorPdzMOnoG6HHQRoKJKpdYCmFcmFBJV+JdtrB54+Z+2vFIk1pbB+uBbVPNu6anXu3LDwwdPI4kQ/rhAlrLt1NMVo7BTQuTmPw9lSMOYLiVtfFqOkw/rXgdFJ/cbbGXhX0tkpsQ+DGZSFU6MkUtu0MDtRFU0TrnmQtmu7vRfk7FXDlPNC8KU05PlcoxXsLsqk7QdXm0grJ0HdwUiI1b47Cw9mlIGpnOgzYbWXS3E/5LYulqgloPs4dBJuCkY2rPdT2sFC2iOBpMqN9Jt+oIbA6PPr65XLIZPKRct0pGejg86kdefY1a+DXyyn0AU7PSiUvps0y+M2exyDLymD99nWvC64nIDG1csItZmq/r1ygzfsXqCqwTrYY4XOvj0/XvSLLIiTFNLhJg5R4Br5koCRMFlklChXrKMdrBaVHVIuvDOpbzYkST7029ZDAszif/wrYRhSzO1y1OINkfsISwhq6DRe5ND0SCH4ew0J5OuB5m7DeTA6PKIffmsam7fB+pemV4Lob6brOo+Y1NoBXT9k2e8FZTpNvpgAkhjTyFcGEXbLqdvClto4evLFlEUGbeFLbb4CnFR9r2aVPVAXiR1mf4w3g6p6gEBqnPUvo1bgsosrwh0TvQmPRqRpUBAtKYSXJ3UWQ== lzell@Lous-MacBook-Air.local" >> /home/ec2-user/.ssh/authorized_keys
+
+# Run sshd on port 5083 instead of 22
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+sed "/^#Port 22/i Port 5083" /etc/ssh/sshd_config | sudo tee /etc/ssh/sshd_config
+systemctl restart sshd.service
+
+# Update all yum packages
+yum update -y
+
+# Crontabs are not installed by default in Amazon Linux 2023
+yum install cronie -y
+
+# Install nginx
+yum install nginx -y
+
+# Install certbot. See note at https://www.louzell.com/notes/certbot.html
+dnf install python3
+python3 -m venv /opt/certbot
+/opt/certbot/bin/pip install --upgrade pip
+/opt/certbot/bin/pip install certbot certbot-nginx
+
+# Install and setup sendmail following the instructions at https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-sendmail.html
+yum install sendmail sendmail-cf mailx -y
+mkdir -p /etc/mail
+echo 'AuthInfo:email-smtp.us-east-2.amazonaws.com "U:root" "I:<%= SMTP_USER %>" "P:<%= SMTP_PASS %>" "M:PLAIN"' > /etc/mail/authinfo
+echo 'Connect:email-smtp.us-east-2.amazonaws.com RELAY' >> /etc/mail/access
+sed "/^MAILER(smtp)dnl/i define(\`SMART_HOST', \`email-smtp.us-east-2.amazonaws.com')dnl\ndefine(\`RELAY_MAILER_ARGS', \`TCP \$h 587')dnl\ndefine(\`confAUTH_MECHANISMS', \`LOGIN PLAIN')dnl\nFEATURE(\`authinfo', \`hash -o /etc/mail/authinfo.db')dnl\nMASQUERADE_AS(\`gmail.com')dnl\nFEATURE(masquerade_envelope)dnl\nFEATURE(masquerade_entire_domain)dnl" /etc/mail/sendmail.mc | sudo tee /etc/mail/sendmail.mc
+cd /etc/mail && make
+systemctl enable sendmail
+systemctl start sendmail
+
+# Install `locate` and run `updatedb` so I can find things on this box
+yum install -y mlocate
+updatedb
+
+# Change ec2-user and root prompts
+echo 'if [ -t 0 ]; then
+  # In TTY
+  export PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w $\\[$(tput sgr0)\\] "
+fi' | tee -a /root/.bashrc
+
+echo 'if [ -t 0 ]; then
+  # In TTY
+  export PS1="<louzell.com> \\[$(tput setaf 3)\\]\\u@\\h:\\w $\\[$(tput sgr0)\\] "
+fi' >> /home/ec2-user/.bashrc
+
+# Send error messages to my email
+echo "lzell11@gmail.com" | tee /root/.forward
+echo "lzell11@gmail.com" > /home/ec2-user/.forward
+
+# ec2-user is, by default, in the sudoers file as 'ec2-user ALL=(ALL) NOPASSWD:ALL'.
+# Give ec2-user a password and disallow reaching root without entering pass
+echo "<%= EC2_USER_PASS %>" | passwd --stdin ec2-user
+echo "ec2-user ALL=(ALL) ALL" | tee -a /etc/sudoers.d/ec2-user
+
+# Remove all possible sudoers except ec2-user.
+# This removes Amazon's default cloud init file, which allows ec2-user to reach root without supplying a password
+ls /etc/sudoers.d/ | grep -v ec2-user | xargs -I {} rm /etc/sudoers.d/{}
+
+# Append cron to install security updates to list of existing root crons
+(sudo crontab -l 2>/dev/null; echo "43 3 * * * /usr/bin/yum update --security -y") | sudo crontab -
+
+# Get the public dns name of this machine
+AWS_TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+PUBLIC_HOSTNAME=$(curl -H "X-aws-ec2-metadata-token: $AWS_TOKEN" http://169.254.169.254/latest/meta-data/public-hostname)
+
+# There are instructions for configuring SES in ~/notes/ses.md
+echo "EHLO gmail.com
+AUTH LOGIN
+<%= SMTP_USER_BASE64 %>
+<%= SMTP_PASS_BASE64 %>
+MAIL FROM: lzell11@gmail.com
+RCPT TO: lzell11@gmail.com
+DATA
+X-SES-CONFIGURATION-SET: lzell-default
+From: Lou Zell <lzell11@gmail.com>
+To: lzell11@gmail.com
+Subject: New www.louzell.com machine is ready
+
+Instance is up.  Access with:
+ssh ec2-user@$PUBLIC_HOSTNAME
+.
+QUIT
+" > /etc/mail/email.txt
+
+openssl s_client -crlf -quiet -starttls smtp -connect email-smtp.us-east-2.amazonaws.com:587 < /etc/mail/email.txt
+
+# Clear history
+cat /dev/null > ~/.bash_history && history -c && exit

@@ -1,0 +1,38 @@
+require 'erb'
+
+# Launches bare Amazon Linux 2023 t4g instances
+# Sets up the machine using 'boostrap.userdata' (see bootstrap.userdata.template file)
+#
+# Usage:
+#   rake launch[nano]
+#
+# Other size possibilities are (nano|micro|small|medium|large|xlarge|2xlarge)
+#
+# Depenencies:
+#
+#   Requires secrets in the homedir at ~/.aws/louzell/* where each file contains a single secret.
+#
+#
+BOOTSTRAP_TEMPLATE=File.read('bootstrap.userdata.template')
+BOOTSTRAP_FILE = 'bootstrap.userdata'
+
+desc "Fill in the boostrap.userdata.template file to produce bootstrap.userdata. Note that this will contain passwords!"
+task :write_bootstrap_file do
+  SMTP_USER = File.read('/Users/lzell/.aws/louzell/smtp_user').chomp
+  SMTP_PASS = File.read('/Users/lzell/.aws/louzell/smtp_pass').chomp
+  SMTP_USER_BASE64 = File.read('/Users/lzell/.aws/louzell/smtp_user_base64').chomp
+  SMTP_PASS_BASE64 = File.read('/Users/lzell/.aws/louzell/smtp_pass_base64').chomp
+  EC2_USER_PASS = File.read('/Users/lzell/.aws/louzell/ec2_user_pass').chomp
+  result = ERB.new(BOOTSTRAP_TEMPLATE).result(binding)
+  puts "Writing boostrap file to #{BOOTSTRAP_FILE}"
+  File.write(BOOTSTRAP_FILE, result)
+end
+
+desc "Launch a new instance using bootstrap.userdata to configure the box"
+task :launch, [:size] => [:write_bootstrap_file] do |t, args|
+  system("./launch.sh #{args[:size]}")
+  puts "Removing bootstrap file #{BOOTSTRAP_FILE}"
+  system("rm #{BOOTSTRAP_FILE}")
+end
+
+task :default => ['launch']
