@@ -1,4 +1,5 @@
 .describe_instances_response.json
 .run_instances_response.json
+Gemfile.lock
 README.md.html
 www/**/*.html
