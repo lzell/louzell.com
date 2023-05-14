@@ -20,7 +20,7 @@ For initial certificate:
   
 For renewal:  
   
-    /opt/certbot/bin/certbot renew --no-self-upgrade --standalone  
+    /opt/certbot/bin/certbot renew --nginx  
   
 Test renewal with:  
   
