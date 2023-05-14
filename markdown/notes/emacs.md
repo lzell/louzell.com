@@ -1,7 +1,11 @@
 ## 2023-05-12  
-### (emacs, org mode, sort by todo status)  
+### (emacs, org mode, sort todo list by todo status)  
   :: Highlight the list to sort using C-space and movement keys  
   C-c ^ o  
+  
+### (emacs, org mode, sort checklist by completion status)  
+  :: Place the cursor anywhere in checklist  
+  C-c ^ x  
   
 ### (emacs, org mode, add deadline to todo item)  
   C-c C-d  
