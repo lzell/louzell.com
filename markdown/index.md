@@ -6,4 +6,5 @@ If you find these notes useful, please consider following my current project, de
 [certbot notes](notes/certbot.html)  
 [emacs notes](notes/emacs.html)  
 [ruby notes](notes/ruby.html)  
+[serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
   
