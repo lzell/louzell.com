@@ -15,7 +15,6 @@ Instead, use:
   
     system "exit 1", exception: true  
   
-## 2023-05-10  
 ### (ruby, map, symbol syntax, symbol to proc)  
 The symbol to proc functionality assumes that the symbol is a member of the  
 calling instance. To call a pure function, use `my_array.map(&method(:my_fn))`.  
@@ -35,7 +34,6 @@ Either use:
   
 Or add `binding.irb` in source, no require necessary.  
 I prefer the former, because stepping (`n`) and continuing (`c`) through the source works.  
-  
   
 ### (ruby 3 irb autocomplete, navigate autocomplete popup)  
 Move down: Tab  
@@ -57,7 +55,6 @@ or add `IRB.conf[:USE_AUTOCOMPLETE] = false` to `~/.irbrc`
 - Call the generator with `ruby generator.rb`, and observe `myfile.txt` on disk.  
   
 ## 2021-01-28  
-  
 ### (rvm upgrade, rvm update ruby version)  
 `rvm get stable`  
   
@@ -79,18 +76,13 @@ See where bundler finds a specific gem:
   
     bundle show <gemname>  
   
+## 2015-04-03  
+### (ruby koans, assert, testing, education)  
+https://www.rubykoans.com/  
   
 ## 2015-02-17  
-  
 ### (ruby ruby, sexp, lexer, parser, tokenize)  
 http://ruby-doc.org/stdlib-2.2.0/libdoc/ripper/rdoc/Ripper.html  
-  
-## 2013-02-06  
-### (ruby, time, active support, time helpers, number of seconds)  
-`require 'active_support/time'`  
-  
-I added this here:  
-https://stackoverflow.com/a/14725405/143447  
   
 ## 2014-08-04  
 ### (ruby, find methods defined lower in class tree)  
@@ -101,6 +93,16 @@ List methods on an instance that are defined outside of `Object`:
           (methods - Object.instance_methods).sort  
         end  
     end  
+  
+## 2013-11-26  
+### (ruby, irb, faulty ~/.irbrc, debugging)  
+To see why ~/.irbrc is not working properly:  
+  
+    ruby ~/.irbrc  
+  
+### (irb, default configuration)  
+  
+`/private/etc/irbrc` holds the default irb config, can be overwritten by creating a `~/.irbrc` file.  
   
 ## 2013-05-28  
 ### (ruby, rackup, reload on file system changes)  
@@ -116,9 +118,14 @@ Pry is really sweet.
     > ls  
     > show-method mkdir  
   
+## 2013-02-06  
+### (ruby, time, active support, time helpers, number of seconds)  
+`require 'active_support/time'`  
+  
+I added this here:  
+https://stackoverflow.com/a/14725405/143447  
   
 ## 2013-01-03  
-  
 ### (irb, source exploration, discovery)  
   
   Given a starting value, see what method will give the desired result with `what_methods`.  
@@ -126,7 +133,6 @@ Pry is really sweet.
   
     require 'what_methods'  
     10.what? "10" #=> 10.to_s, 10.inspect  
-  
   
 ## 2012-12-15  
 ### (ruby, colorize irb prompt, colorize rails console prompt):  
@@ -138,15 +144,17 @@ Pry is really sweet.
 ### (ruby, gems, get location on disk)  
 `gem env`  
   
-## 2010-06-03  
+## 2011-12-19  
+### (rvm, ruby, remove rvm)  
+rvm implode  
   
+## 2010-06-03  
 ### (rvm, which rvm)  
 After installing rvm, I was surprised that `which rvm` exited with 1.  
 `rvm` is a function that's sourced into my shell.  
 Use `command -v rvm` to see if my shell can find it.  
 Use `bash --debugger -cl "declare -F rvm"` to find where the function is defined.  
 The output will contain the definition file on disk and the source line number.  
-  
   
 ### (ruby, rubygems, load automatically)  
 Do not add `require "rubygems"` to code.  
@@ -279,7 +287,6 @@ Loop through escape sequences in IRB to pick a color:
       puts x  
       print "\e[#{x}mTEST\e[0m\n"  
     end  
-  
   
 ### (ruby, is daylight savings in effect?)  
 `Time.now.isdst`  
