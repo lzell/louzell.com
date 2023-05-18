@@ -71,3 +71,19 @@
         ```  
   
 - Run the plugin in Figma and verify that three orange rectangles appear (instead of five).  
+  
+- Make `npm run watch` run the bundler and the typechecker on every file system change, and multiplex the output:  
+    - Install the unix `parallel` program with `brew install parallel`  
+    - Modify `package.json` to contain:  
+  
+        ```  
+        "scripts": {  
+          "typecheck": "tsc --project tsconfig.json",  
+          "bundle": "./node_modules/.bin/esbuild code.ts --bundle --outfile=code.js",  
+          "watch_typecheck": "npm run typecheck -- --watch --preserveWatchOutput",  
+          "watch_bundle": "npm run bundle -- --watch=forever",  
+          "watch": "parallel --ungroup 'npm run' ::: watch_typecheck watch_bundle"  
+        },  
+        ```  
+  
+    - Run `npm run watch` and make a source change. Verify both the typechecker and bundler emit output.  
