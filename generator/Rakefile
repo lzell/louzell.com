@@ -22,6 +22,7 @@ DESTINATION_PATH_MARKDOWN_NOTES = File.join DESTINATION_PATH_MARKDOWN, "notes"
 DESTINATION_PATH_HTML_NOTES = File.join DESTINATION_PATH_HTML, "notes"
 INDEX_TEMPLATE_PATH = File.expand_path "index.md.erb"
 INDEX_DESTINATION_PATH = File.join DESTINATION_PATH_MARKDOWN, "index.md"
+SITEMAP_DESTINATION_PATH = File.join DESTINATION_PATH_HTML, "sitemap.txt"
 PUBLISH_MANIFEST_FILE = File.expand_path "publish_manifest.txt"
 
 
@@ -104,11 +105,20 @@ task :generate_html => [:preprocess] do
   system generate_html_of_manifest_files, exception: true
 end
 
+desc "Write a text sitemap of pages I want indexed"
+task :write_sitemap do
+  sitemap_content = files_in_manifest
+    .map(&method(:trim_md_extension))
+    .map { |basename| "https://www.louzell.com/notes/#{basename}.html" }
+    .join("\n") << "\n"
+  File.open(SITEMAP_DESTINATION_PATH, "w") { |f| f.write sitemap_content }
+end
+
 
 # Deploys <project-dir>/www to www.louzell.com
 # Requires public ssh keys to be added to infra/bootstrap.userdata.template
 desc "Deploy generated html to louzell.com"
-task :deploy => [:generate_html] do
+task :deploy => [:write_sitemap, :generate_html] do
   cmd = %{
     cd #{DESTINATION_PATH_HTML}
     rsync -Lavz -e "ssh -l ec2-user -p 5083" ./ ec2-user@louzell:/srv/www/louzell.com/ --delete
