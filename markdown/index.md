@@ -6,6 +6,7 @@ If you find these notes useful, please consider following my current project, [d
 [certbot notes](notes/certbot.html)  
 [emacs notes](notes/emacs.html)  
 [figma_plugin_dev notes](notes/figma_plugin_dev.html)  
+[opensnoop notes](notes/opensnoop.html)  
 [ruby notes](notes/ruby.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
   

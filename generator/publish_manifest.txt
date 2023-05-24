@@ -1,5 +1,6 @@
 certbot.md
 emacs.md
 figma_plugin_dev.md
+opensnoop.md
 ruby.md
 serve_https_on_localhost.md
