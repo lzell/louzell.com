@@ -56,7 +56,7 @@ View ssh sessions with start and end times:
 ### (ssh, ssh-agent, add and remove keys)  
 To see keys in ssh-agent:   
   
-    ssh-add -l   
+    ssh-add -L  
   
 To remove all keys in ssh-agent:  
   

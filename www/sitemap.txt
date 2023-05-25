@@ -4,3 +4,4 @@ https://www.louzell.com/notes/figma_plugin_dev.html
 https://www.louzell.com/notes/opensnoop.html
 https://www.louzell.com/notes/ruby.html
 https://www.louzell.com/notes/serve_https_on_localhost.html
+https://www.louzell.com/notes/ssh.html
