@@ -1,3 +1,8 @@
+## 2023-05-24  
+### (emacs, org mode, todo, move items up and down)  
+  M-up  
+  M-down  
+  
 ## 2023-05-12  
 ### (emacs, org mode, sort todo list by todo status)  
   :: Highlight the list to sort using C-space and movement keys  

@@ -9,4 +9,5 @@ If you find these notes useful, please consider following my current project, [d
 [opensnoop notes](notes/opensnoop.html)  
 [ruby notes](notes/ruby.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
+[ssh notes](notes/ssh.html)  
   
