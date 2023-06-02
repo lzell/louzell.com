@@ -10,4 +10,6 @@ If you find these notes useful, please consider following my current project, [d
 [ruby notes](notes/ruby.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
 [ssh notes](notes/ssh.html)  
+[typescript notes](notes/typescript.html)  
+[typescript_new_project notes](notes/typescript_new_project.html)  
   

@@ -5,3 +5,5 @@ https://www.louzell.com/notes/opensnoop.html
 https://www.louzell.com/notes/ruby.html
 https://www.louzell.com/notes/serve_https_on_localhost.html
 https://www.louzell.com/notes/ssh.html
+https://www.louzell.com/notes/typescript.html
+https://www.louzell.com/notes/typescript_new_project.html

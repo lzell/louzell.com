@@ -1,3 +1,21 @@
+## 2023-05-24  
+### (dump full object in console)  
+SHOULD I COMMIT THIS HERE OR ADD NOTES IN THE DSCOMPILER REPO?  
+console.log(JSON.stringify(figma.getLocalPaintStyles()))  
+  
+    Start repl with `npx ts-node`  
+  
+Figma's main type is PluginAPI, which is an interface.  
+  
+Get object in dev tools for factory creation with Right click > Copy Object.  
+Works with paints, but not with paintstyles for some reason.  
+  
+Note from `node_modules/@figma/plugin-typings/README.md`  
+    > Types should become globally available without needing to use import  
+    > statements. We do it this way because the plugin API is part of the host  
+    > environment, as opposed to being a package that a plugin includes.  
+  
+  
 ## 2023-05-17  
 ### (figma plugin, getting started)  
   
