@@ -11,43 +11,7 @@
     border-radius: 4px;
   }
 
-  .entry-wrapper:nth-of-type(even) .the-headers {
-      background: #eeeeee;
-  }
-
-  .entry-wrapper:nth-of-type(odd) .the-headers {
-      background: #dddddd;
-  }
-
-  .entry-wrapper {
-    display: flex;
-    gap: 20px;
-  }
-
-  .the-headers {
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-
-  .the-contents {
-    flex-grow: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  h3 {
-    margin-top:20px;
-  }
-
-  h2 {
-    padding:0 10px;
-    margin-top:20px;
-    font-size:105%;
-    font-family:monospace;
-  }
-
   body {
     max-width: 55em;
   }
-
 </style>
