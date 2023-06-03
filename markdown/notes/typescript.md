@@ -1,24 +1,34 @@
 ## 2023-06-02  
 ### (typescript, named arguments, hack, destructuring, default values for tests)  
-Named arguments aren't part of TS.  
-I'm using this pattern to aid in creating factories for testing:  
+  
+I figured out a way to write test factories in a way that I'm happy with.  
+Say you have some interface X that requires many members to satisfy the contract.  
+I want my unit tests to only concern themselves with a small set of members (ideally 1).  
+So I create factories that will vend objects that satisfy the contract,  
+where the caller can manipulate a single member at a time.  
+It looks a bit like using named arguments from other languages, which makes the unit test readable.  
+As an example, X is a dependency type; I define `XPrime` and `factory` in factories.ts:  
   
     interface X {  
       a: string  
       b: number  
     }  
-      
+  
     interface XPrime {  
       a?: string  
       b?: number  
     }  
-      
+  
     function factory({a, b}: XPrime = {}): X {  
       return {  
         a: a || "hello",  
         b: b || 123  
       }  
     }  
+  
+Then I can get instances of X in a unit test with `factory()`, or `factory({a: "hi"})` or `factory({b: 0})`.  
+If I don't supply `a` or `b` they default to values of `hello` and `123`, respectively.  
+  
   
 ## 2023-06-01  
 ### (typescript, default arguments)  
