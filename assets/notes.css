@@ -1,17 +1,28 @@
 <style type="text/css">
   pre {
+    font-family:monospace;
+    font-size: 97%;
     background-color:#eeeeee;
     padding:10px;
     border-radius: 4px;
   }
 
   code {
+    font-family:monospace;
+    font-size: 97%;
     background-color: #eeeeee;
     padding:1px;
     border-radius: 4px;
   }
 
   body {
+    font-family:monospace;
     max-width: 55em;
+  }
+
+  h2 {
+    font-family:monospace;
+    font-size:105%;
+    text-decoration:underline;
   }
 </style>
