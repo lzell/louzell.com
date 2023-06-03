@@ -1,11 +1,12 @@
 ## 2023-04-30  
 ### (certbot, install certbot, al2023, amazon linux 2023, use python)  
   
-On a fresh box, use the `--standalone` option instead of the `--nginx` option to get the initial certificate.  
-Otherwise, nginx fails to start for the letsencrypt challenge because the files at `/etc/letsencrypt/live/<my-domain>/` are not yet on disk.  
-Use the `--nginx` option for renewals, as nginx will already be configured correctly and up and running.  
+- On a fresh box, use certbot's `--standalone` option instead of the `--nginx` option to get the initial certificate.  
+  Otherwise, nginx fails to start for the letsencrypt challenge because the files at `/etc/letsencrypt/live/<my-domain>/` are not yet on disk.  
   
-For initial certificate:  
+- Use the `--nginx` option for renewals, as nginx will already be configured correctly and up and running.  
+  
+To install the initial certificate:  
   
     dnf install python3  
     python3 -m venv /opt/certbot  
@@ -18,11 +19,11 @@ For initial certificate:
     systemctl start nginx.service  
   
   
-For renewal:  
+To renew:  
   
     /opt/certbot/bin/certbot renew --nginx  
   
-Test renewal with:  
+To perform a dry run of renew:  
   
     /opt/certbot/bin/certbot renew --nginx --dry-run --no-random-sleep-on-renew  
   

@@ -1,3 +1,25 @@
+## 2023-06-02  
+### (typescript, named arguments, hack, destructuring, default values for tests)  
+Named arguments aren't part of TS.  
+I'm using this pattern to aid in creating factories for testing:  
+  
+interface X {  
+  a: string  
+  b: number  
+}  
+  
+interface XPrime {  
+  a?: string  
+  b?: number  
+}  
+  
+function factory({a, b}: XPrime = {}): X {  
+  return {  
+    a: a || "hello",  
+    b: b || 123  
+  }  
+}  
+  
 ## 2023-06-01  
 ### (typescript, default arguments)  
     function x(a: string = "hello") {  
