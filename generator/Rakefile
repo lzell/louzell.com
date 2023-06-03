@@ -95,7 +95,7 @@ task :generate_html => [:preprocess] do
     cd #{DESTINATION_PATH_MARKDOWN_NOTES}
     while IFS= read -r f
     do
-      pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" -H "../../assets/notes.js" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
+      pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
     done < "#{PUBLISH_MANIFEST_FILE}"
   END
 
