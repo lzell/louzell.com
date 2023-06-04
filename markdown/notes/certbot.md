@@ -25,7 +25,7 @@ Notes:
   
 * On a fresh box, I use certbot's `--standalone` option instead of the `--nginx` option to get the initial certificate. Nginx can't start on a fresh box because the files at `/etc/letsencrypt/live/<my-domain>/` are not yet on disk (they are created by certbot).  
   
-* Use the `--nginx` option for renewals, as nginx will already be configured correctly and up and running.  
+* I use the `--nginx` option for renewals, as nginx will already be configured correctly and up and running.  
   
 * I don't use yum for this install because the epel repo is not supported by Amazon Linux 2023.  
   - No longer supported: `yum install certbot`  

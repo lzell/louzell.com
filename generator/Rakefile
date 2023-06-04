@@ -24,6 +24,8 @@ INDEX_TEMPLATE_PATH = File.expand_path "index.md.erb"
 INDEX_DESTINATION_PATH = File.join DESTINATION_PATH_MARKDOWN, "index.md"
 SITEMAP_DESTINATION_PATH = File.join DESTINATION_PATH_HTML, "sitemap.txt"
 PUBLISH_MANIFEST_FILE = File.expand_path "publish_manifest.txt"
+PANDOC_NOTE_TEMPLATE_FILE = File.expand_path "./note_template.html"
+PANDOC_INDEX_TEMPLATE_FILE = File.expand_path "./index_template.html"
 
 
 # File index.md.erb becomes index.md which becomes index.html on louzell.com.
@@ -88,14 +90,14 @@ task :generate_html => [:preprocess] do
 
   generate_index_html =<<-END
     cd #{DESTINATION_PATH_MARKDOWN}
-    pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="Lou Zell's notes" --variable title="" -H "../assets/notes.css" "index.md" > "#{DESTINATION_PATH_HTML}/index.html"
+    pandoc -f markdown+autolink_bare_uris -t html --template=#{PANDOC_INDEX_TEMPLATE_FILE} --standalone --metadata title="Lou Zell's notes" --variable title="" -H "../assets/notes.css" "index.md" > "#{DESTINATION_PATH_HTML}/index.html"
   END
 
   generate_html_of_manifest_files =<<-END
     cd #{DESTINATION_PATH_MARKDOWN_NOTES}
     while IFS= read -r f
     do
-      pandoc -f markdown+autolink_bare_uris -t html --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
+      pandoc -f markdown+autolink_bare_uris -t html --template=#{PANDOC_NOTE_TEMPLATE_FILE} --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
     done < "#{PUBLISH_MANIFEST_FILE}"
   END
 

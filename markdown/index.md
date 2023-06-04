@@ -2,7 +2,7 @@ This is a collection of notes I've taken on programming.
   
 Within a note, entries are dated and prefaced with a list of tags: `(tag1, tag2, ...)`.  
   
-If you find these notes useful, please consider following my current project, [dscompiler](https://github.com/lzell/dscompiler)  
+If you find these notes useful, please consider following my current project, [dscompiler](https://github.com/lzell/dscompiler).  
   
 [certbot notes](notes/certbot.html)  
 [emacs notes](notes/emacs.html)  

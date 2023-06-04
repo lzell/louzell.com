@@ -40,7 +40,7 @@
    - Move forward, back by full words M-f, M-b  
    - Move down, up by paragraph with C-{, C-}  
    - Search forward, back with C-s, C-r  
-     Add this to .emacs to leave the curors where the matched string starts instead of ends:  
+     Add this to .emacs to leave the cursor where the matched string starts instead of ends:  
   
          (add-hook 'isearch-mode-end-hook  
          (lambda () (when isearch-forward (goto-char isearch-other-end))))  
