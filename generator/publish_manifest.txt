@@ -2,6 +2,7 @@ certbot.md
 emacs.md
 figma_plugin_dev.md
 opensnoop.md
+pandoc_markdown.md
 ruby.md
 serve_https_on_localhost.md
 ssh.md
