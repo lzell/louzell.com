@@ -7,6 +7,7 @@ If you find these notes useful, please consider following my current project, [d
 [certbot notes](notes/certbot.html)  
 [emacs notes](notes/emacs.html)  
 [figma_plugin_dev notes](notes/figma_plugin_dev.html)  
+[liquid_js notes](notes/liquid_js.html)  
 [opensnoop notes](notes/opensnoop.html)  
 [pandoc_markdown notes](notes/pandoc_markdown.html)  
 [ruby notes](notes/ruby.html)  
