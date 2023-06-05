@@ -1,4 +1,5 @@
-## 2023-05-23  
+## 2023  
+<!-- 2023-05-23 -->  
 ### (opensnoop, install, Amazon Linux 2023)  
   
     dfn install -y bcc-tools  
@@ -9,7 +10,8 @@
 ### (opensnoop, enable dtrace on macos, bookmark, sip, csrutil)  
 https://stackoverflow.com/a/60910410/143447  
   
-## 2021-06-28  
+## 2021  
+<!-- 2021-06-28 -->  
 ### (macos, built-in dtrace scripts)  
 Find all built-in dtrace files on MacOS with:  
   
@@ -22,15 +24,18 @@ https://github.com/brendangregg/DTrace-book-scripts
   
 Also lookup `dtruss`  
   
-## 2016-01-16  
+## 2016  
+<!-- 2016-01-16 -->  
 ### (opensnoop's cousin, iosnoop, bookmark)  
 https://www.brendangregg.com/blog/2014-07-16/iosnoop-for-linux.html  
   
-## 2012-03-26  
+## 2012  
+<!-- 2012-03-26 -->  
 ### (opensnoop, dtrace, bookmark)  
 http://dtrace.org/blogs/brendan/2011/10/10/top-10-dtrace-scripts-for-mac-os-x/  
   
-## 2010-12-06  
+## 2010  
+<!-- 2010-12-06 -->  
 ### (opensnoop, snow leopard, what is a program installing)  
 Option 1:  
   

@@ -1,4 +1,5 @@
-## 2023-05-17  
+## 2023  
+<!-- 2023-05-17 -->  
 ### (figma plugin, getting started)  
   
 - Open the Figma desktop app  

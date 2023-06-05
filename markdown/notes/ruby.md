@@ -1,9 +1,10 @@
-## 2023-05-13  
+## 2023  
+<!-- 2023-05-13 -->  
 ### (ruby repl, irb, insert line in existing function)  
 Up arrow to previously executed code in irb  
 Use Opt+Enter to add a new line without executing  
   
-## 2023-05-10  
+<!-- 2023-05-10 -->  
 ###  (ruby, system, exception, raise if error from shell, default does not raise)  
 None of these raise by default:  
   
@@ -54,15 +55,20 @@ or add `IRB.conf[:USE_AUTOCOMPLETE] = false` to `~/.irbrc`
 ```  
 - Call the generator with `ruby generator.rb`, and observe `myfile.txt` on disk.  
   
-## 2021-01-28  
+  
+## 2019  
+<!-- 2019-06-11 -->  
 ### (rvm upgrade, rvm update ruby version)  
 `rvm get stable`  
   
-## 2019-06-11  
 ### (rvm set default ruby version)  
 `rvm --default use X.Y.Z`  
   
-## 2018-08-18  
+### (rvm, ruby, remove rvm)  
+rvm implode  
+  
+## 2018  
+<!-- 2018-08-18 -->  
 ### (rvm, name a version of ruby for local use)  
   
     rvm alias create myruby ruby-2.4.1  
@@ -76,15 +82,17 @@ See where bundler finds a specific gem:
   
     bundle show <gemname>  
   
-## 2015-04-03  
+## 2015  
+<!-- 2015-04-03 -->  
 ### (ruby koans, assert, testing, education)  
 https://www.rubykoans.com/  
   
-## 2015-02-17  
+<!-- 2015-02-17 -->  
 ### (ruby ruby, sexp, lexer, parser, tokenize)  
 http://ruby-doc.org/stdlib-2.2.0/libdoc/ripper/rdoc/Ripper.html  
   
-## 2014-08-04  
+## 2014  
+<!-- 2014-08-04 -->  
 ### (ruby, find methods defined lower in class tree)  
 List methods on an instance that are defined outside of `Object`:  
   
@@ -94,7 +102,8 @@ List methods on an instance that are defined outside of `Object`:
         end  
     end  
   
-## 2013-11-26  
+## 2013  
+<!-- 2013-11-26 -->  
 ### (ruby, irb, faulty ~/.irbrc, debugging)  
 To see why ~/.irbrc is not working properly:  
   
@@ -104,7 +113,7 @@ To see why ~/.irbrc is not working properly:
   
 `/private/etc/irbrc` holds the default irb config, can be overwritten by creating a `~/.irbrc` file.  
   
-## 2013-05-28  
+<!-- 2013-05-28 -->  
 ### (ruby, rackup, reload on file system changes)  
 See the rerun gem  
   
@@ -118,14 +127,14 @@ Pry is really sweet.
     > ls  
     > show-method mkdir  
   
-## 2013-02-06  
+<!-- 2013-02-06 -->  
 ### (ruby, time, active support, time helpers, number of seconds)  
 `require 'active_support/time'`  
   
 I added this here:  
 https://stackoverflow.com/a/14725405/143447  
   
-## 2013-01-03  
+<!-- 2013-01-03 -->  
 ### (irb, source exploration, discovery)  
   
   Given a starting value, see what method will give the desired result with `what_methods`.  
@@ -134,21 +143,20 @@ https://stackoverflow.com/a/14725405/143447
     require 'what_methods'  
     10.what? "10" #=> 10.to_s, 10.inspect  
   
-## 2012-12-15  
+## 2012  
+<!-- 2012-12-15 -->  
 ### (ruby, colorize irb prompt, colorize rails console prompt):  
   
     require "wirble"  
     IRB.CurrentContext.prompt_i = Wirble::Colorize.colorize_string(IRB.CurrentContext.prompt_i, :red)  
   
-## 2012-05-22  
+<!-- 2012-05-22 -->  
 ### (ruby, gems, get location on disk)  
 `gem env`  
   
-## 2011-12-19  
-### (rvm, ruby, remove rvm)  
-rvm implode  
   
-## 2010-06-03  
+<!-- 2010-06-03 -->  
+## 2010  
 ### (rvm, which rvm)  
 After installing rvm, I was surprised that `which rvm` exited with 1.  
 `rvm` is a function that's sourced into my shell.  
@@ -165,7 +173,8 @@ Start ruby with `ruby -rubygems`, or irb with `irb -rrubygems`, or add this to `
 source: https://tomayko.com/blog/2009/require-rubygems-antipattern  
   
   
-## 2009-05-15  
+## 2009  
+<!-- 2009-05-15 -->  
 ### (ruby, regex, dot star, does not match new line)  
 Here is an interesting difference:  
   

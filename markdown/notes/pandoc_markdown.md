@@ -1,4 +1,5 @@
-## 2023-06-03  
+## 2023  
+<!-- 2023-06-03 -->  
 ### (pandoc, print default template)  
 Publishing markdown to html uses a default pandoc template.  
 See the contents of the default template with:  
@@ -14,7 +15,7 @@ Make changes to the template. Then:
   
     pandoc -f markdown -t html --standalone --template=my_template.html myfile.md   
   
-## 2023-05-06  
+<!-- 2023-05-06 -->  
 ### (pandoc, preserve leading whitespace, export html)   
 Use the pandoc `line_blocks` extension to preserve leading whitespace when exporting markdown to html.  
   
@@ -44,7 +45,8 @@ Good for preserving newlines in html exported with pandoc.
 ### (pandoc, bookmark, indentation inside list items)  
 https://pandoc.org/MANUAL.html#block-content-in-list-items  
   
-## 2022-11-05  
+## 2022  
+<!-- 2022-11-05 -->  
 ### (pandoc, markdown viewer)  
   Install pandoc:  
   

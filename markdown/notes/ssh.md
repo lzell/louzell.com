@@ -1,4 +1,5 @@
-## 2023-05-25  
+## 2023  
+<!-- 2023-05-25 -->  
 ### (ssh, disconnect from stale session)  
 `~.`  
   
@@ -21,7 +22,8 @@ Tail with:
     sed "/^#Port 22/i Port 5083" /etc/ssh/sshd_config | sudo tee /etc/ssh/sshd_config  
     systemctl restart sshd.service  
   
-## 2015-06-22  
+## 2015  
+<!-- 2015-06-22 -->  
 ### (debugging forward agent, forwardagent)  
 Verify that the key is found in ssh agent:   
   
@@ -33,13 +35,14 @@ Verify that forward agent works:
     my-host> ssh -T <another-host>  
   
   
-## 2014-01-14  
+<!-- 2014-01-14 -->  
 ### (ssh, print fingerprint, public key)  
   
     ssh-keygen -lf ~/.ssh/rsa_key.pub  
   
   
-## 2014-01-08  
+## 2014  
+<!-- 2014-01-08 -->  
 ### (ssh, kick out user, logout session, session start and end time)  
 To kick an ssh session:  
   
@@ -52,7 +55,8 @@ View ssh sessions with start and end times:
     last -F  
   
   
-## 2013-01-05  
+## 2013  
+<!-- 2013-01-05 -->  
 ### (ssh, ssh-agent, add and remove keys)  
 To see keys in ssh-agent:   
   
@@ -67,13 +71,15 @@ To add key to ssh-agent:
     ssh-add -k <private-key>  
   
   
-## 2010-01-13  
+## 2010  
+<!-- 2010-01-13 -->  
 ### (ssh, remote script, sudo, cleartext, no visible password)  
 To use ssh to launch a remote script that uses sudo, pass the `-t` flag:   
   
     ssh -l user host -t 'sudo ls'  
   
   
-## 2009-05-15  
+## 2009  
+<!-- 2009-05-15 -->  
 ### (ssh, debugging info)  
 `ssh -vv <your-host>`  

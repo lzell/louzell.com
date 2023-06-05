@@ -1,9 +1,10 @@
-## 2023-05-24  
+## 2023  
+<!-- 2023-05-24 -->   
 ### (emacs, org mode, todo, move items up and down)  
   M-up  
   M-down  
   
-## 2023-05-12  
+<!-- 2023-05-12 -->   
 ### (emacs, org mode, sort todo list by todo status)  
   :: Highlight the list to sort using C-space and movement keys  
   C-c ^ o  
@@ -15,7 +16,7 @@
 ### (emacs, org mode, add deadline to todo item)  
   C-c C-d  
   
-## 2023-05-07  
+<!-- 2023-05-07 -->  
 ### (emacs, read changed file from disk, reload buffer)  
   M-x revert-buffer  
   
@@ -49,7 +50,7 @@
    - Highlight with C-space, then move around  
    - Copy highlight with M-w, paste with C-y  
   
-## 2023-05-03  
+<!-- 2023-05-03 -->  
 ### (emacs, org-mode experiment ends for publishing these notes)  
   Reason for switching away from org-mode: Getting the html export styling that  
   I want requires too much markup in my text notes. I'm the primary user of the  
@@ -131,7 +132,7 @@
   Open file without fuzzy search with C-x C-f  
   
   
-## 2023-05-02  
+<!-- 2023-05-02 -->  
 ### (emacs anatomy, log statements, emacs console messages, console log)  
   https://web.physics.utah.edu/~detar/lessons/emacs/emacs/node2.html  
   Missing from this is the messages buffer, where error messages appear  
@@ -146,13 +147,13 @@
   ^ this does not work with evil. A workaround is to create a key mapping for `'org-cycle`  
   
   
-## 2023-05-01  
+<!-- 2023-05-01 -->  
 ### (emacs, org mode, indent text, visual indentation)  
   - Select the text to move around, then `C-x C-i`, then use arrow keys  
   - To change the indentation of lists in org mode, use `M-S-ArrowKey`  
   
   
-### (emacs install, macos, 2022-05-01)  
+### (emacs install, macos)  
  Install aquamacs  
  Install evil https://github.com/emacs-evil/evil  
   

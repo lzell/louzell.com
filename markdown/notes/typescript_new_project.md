@@ -1,4 +1,5 @@
-## 2023-06-02  
+## 2023  
+<!-- 2023-06-02 -->  
 ### (typescript setup, typescript new project, jest, esbuild, repl)  
   Install deps:  
   

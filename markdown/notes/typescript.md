@@ -1,4 +1,5 @@
-## 2023-06-02  
+## 2023  
+<!-- 2023-06-02 -->  
 ### (typescript, named arguments, hack, destructuring, default values for tests)  
   
 I figured out a way to write test factories in a way that I'm happy with.  
@@ -30,7 +31,7 @@ Then I can get instances of X in a unit test with `factory()`, or `factory({a: "
 If I don't supply `a` or `b` they default to values of `hello` and `123`, respectively.  
   
   
-## 2023-06-01  
+<!-- 2023-06-01 -->  
 ### (typescript, default arguments)  
     function x(a: string = "hello") {  
         console.log(a)  
@@ -64,7 +65,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
   
   Other tips here: https://dev.to/ackshaey/level-up-your-javascript-browser-logs-with-these-console-log-tips-55o2  
   
-## 2023-05-30  
+<!-- 2023-05-30 -->  
 ### (typescript asserts)  
     console.assert(condition, "expected <condition> to be met")  
   
@@ -82,7 +83,8 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
   If `npx ts-node` is taking a few seconds to start, and doesn't start at all  
   without internet connection, it's because I forgot `npm install --save-dev ts-node`  
   
-## 2022-12-03  
+## 2022  
+<!-- 2022-12-03 -->  
 ### (typescript, return anonymous function)  
     function addN(n: number) {  
       return function(x: number) {  
@@ -99,7 +101,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
     let [x, y] = foo()  
   
   
-## 2022-11-28  
+<!-- 2022-11-28 -->  
 ### (typescript, gotcha, nested function, capture variable, careful, this prints 2)  
     function foo() {  
       let x = 1  
@@ -111,7 +113,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
     }  
     console.log(foo()())  
   
-## 2022-11-21  
+<!-- 2022-11-21 -->  
 ### (typescript, javascript, regex):  
     /^[a-z]$/i.test('A')  
   
@@ -128,7 +130,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
 ### (typescript, jest, matcher, throw, match on exception)  
     expect(() => parse(lex('(+ 1 world)').tokens())).toThrow(/ParseError on bad expression/)  
   
-## 2022-11-05  
+<!-- 2022-11-05 -->  
 ### (typescript, inherit, extend a class, subclass)  
     class ParseError extends Error {}  
   

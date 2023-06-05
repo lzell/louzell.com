@@ -1,4 +1,5 @@
-## 2023-06-04  
+## 2023  
+<!-- 2023-06-04 -->  
 ### (liquidjs, liquid, templating, write file)  
   
 Creat new project:  
