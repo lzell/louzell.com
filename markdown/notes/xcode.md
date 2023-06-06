@@ -1,3 +1,32 @@
+## 2023  
+<!-- 2023-06-05 -->  
+### (xcode, more shortcuts)  
+Returning to Apple work. Refresher:  
+  
+------------------------------------------- ----------------------  
+Reveal file in project tree                 `cmd+shift+j`  
+Toggle project drawer                       `cmd+0`  
+Toggle inspector drawer                     `cmd+opt+0`  
+Navigate between headings in project drawer `cmd+1` through `cmd+9`  
+Go back                                     `cmd+ctrl+left-arrow`  
+Go forward                                  `cmd+ctrl+right-arrow`  
+Fuzzy file search                           `cmd+shift+o`  
+Toggle console                              `cmd+shift+y`  
+Show autocomplete suggestions               `ctrl+space`  
+Run                                         `cmd+r`  
+Stop                                        `cmd+.`  
+------------------------------------------- ------------------------  
+  
+Edits to a fresh Xcode install:  
+  
+    Settings > Editing > Uncheck suggest completions while typing  
+                       > Uncheck use escape key to show completion suggestions  
+                       > Check 'Automatically trim trailing whitespace'  
+                       > Check 'Including whitespace-only lines'  
+      
+    Settings > Behaviors > Running > Generates Output > Uncheck 'Show debugger'  
+  
+  
 ## 2022  
 <!-- 2022-04-22 -->  
 ### (xcode, simulator location, simulator disk location)  
@@ -67,20 +96,25 @@ Right click on a view and "Print description". Then use lldb with the address:
     expr ((UILabel *)0x7f8ff9d102e0).text = @"Hi"  
     po ((UILabel *)0x7f8ff9d102e0).text  
   
-  Or  
+Or  
   
     (lldb) expr UILabel *$label = (id)0x7f8ff9d102e0  
     (lldb) po $label.text  
   
-  After using expr to change a property of the view, I can use `CATransaction.flush()` instead of continuing within debugger to see updates.  
+After using expr to change a property of the view, I can use `CATransaction.flush()` instead of continuing within debugger to see updates.  
   
-  It's possible to use swift too, but obj-c is better for this:  
+It's possible to use swift too, but obj-c is better for this:  
+  
     (lldb) expr let $label = unsafeBitCast(0x7f8ff9d102e0, to: UILabel.self)  
-  Put this in ~/.lldbinit  
+  
+Put this in ~/.lldbinit  
+  
     command regex let s/(.+): (.+) = (0x[[:xdigit:]]+)/expr let $%1 = unsafeBitCast(%3, to: %2.self)/  
-  Then  
-      (lldb) let label: UILabel = 0x7f8ff9d102e0  
-      (lldb) po $label  
+  
+Then  
+  
+    (lldb) let label: UILabel = 0x7f8ff9d102e0  
+    (lldb) po $label  
   
 <!-- 2018-07-17 -->  
 ### (xcode, mute simulator, turn iOS simulator volume down)  
