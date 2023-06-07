@@ -16,10 +16,12 @@ end
 
 
 SOURCE_PATH = File.expand_path "~/notes"
+SOURCE_PROGRAMS_PATH = File.expand_path "../programs"
 DESTINATION_PATH_MARKDOWN = File.expand_path "../markdown"
 DESTINATION_PATH_HTML = File.expand_path "../www"
 DESTINATION_PATH_MARKDOWN_NOTES = File.join DESTINATION_PATH_MARKDOWN, "notes"
 DESTINATION_PATH_HTML_NOTES = File.join DESTINATION_PATH_HTML, "notes"
+DESTINATION_PATH_HTML_PROGRAMS = File.join DESTINATION_PATH_HTML, "programs"
 INDEX_TEMPLATE_PATH = File.expand_path "index.md.erb"
 INDEX_DESTINATION_PATH = File.join DESTINATION_PATH_MARKDOWN, "index.md"
 SITEMAP_DESTINATION_PATH = File.join DESTINATION_PATH_HTML, "sitemap.txt"
@@ -58,7 +60,7 @@ end
 
 # Copies files from ~/notes/ (where my personal note collection is) to <project-dir>/markdown/notes/
 desc "Copy files from ~/notes to ~/dev/louzell.com/markdown "
-task :copy_files => [:clean, :write_index] do
+task :copy_notes => [:clean, :write_index] do
   files_to_copy = files_in_manifest
   puts "Copying #{files_to_copy} from #{SOURCE_PATH} to #{DESTINATION_PATH_MARKDOWN_NOTES}".green
   files_to_copy.each do |f|
@@ -68,11 +70,20 @@ task :copy_files => [:clean, :write_index] do
   end
 end
 
+# Copies files from <project-dir>/programs to <project-dir>/www/programs/
+task :copy_programs => [:clean] do
+  files_in_programs.each do |f|
+    source = File.join SOURCE_PROGRAMS_PATH, f
+    destination = File.join DESTINATION_PATH_HTML_PROGRAMS, f
+    FileUtils::Verbose.cp source, destination
+  end
+end
+
 
 # Adds two spaces to the end of all markdown to render the exported html
 # in approximately the same form as the files on disk.
 desc "Add two spaces to the end of all markdown files."
-task :preprocess => [:copy_files] do
+task :preprocess => [:copy_notes] do
   cmd =<<-END
     cd #{DESTINATION_PATH_MARKDOWN}
     sed -i '' 's/$/  /g' "#{INDEX_DESTINATION_PATH}"
@@ -120,7 +131,7 @@ end
 # Deploys <project-dir>/www to www.louzell.com
 # Requires public ssh keys to be added to infra/bootstrap.userdata.template
 desc "Deploy generated html to louzell.com"
-task :deploy => [:write_sitemap, :generate_html] do
+task :deploy => [:write_sitemap, :generate_html, :copy_programs] do
   cmd = %{
     cd #{DESTINATION_PATH_HTML}
     rsync -Lavz -e "ssh -l ec2-user -p 5083" ./ ec2-user@louzell:/srv/www/louzell.com/ --delete
@@ -136,6 +147,10 @@ private
 
   def files_in_manifest
     return File.read(PUBLISH_MANIFEST_FILE).split("\n")
+  end
+
+  def files_in_programs
+    return Dir.glob(File.join(SOURCE_PROGRAMS_PATH, "*")).map { |f| File.basename f }
   end
 
 task default: :generate_html
