@@ -24,15 +24,24 @@ Tail with:
   
 ## 2015  
 <!-- 2015-06-22 -->  
-### (debugging forward agent, forwardagent)  
-Verify that the key is found in ssh agent:   
+### (ssh, forward agent, forwardagent, setup)  
+Verify that my key is found in ssh agent:  
   
     ssh-add -L  
   
-Verify that forward agent works:  
+If this returns "The agent has no identities", add my key with:  
+  
+    ssh-add -k ~/.ssh/<my-private-key>  
+  
+Next verify that `~/.ssh/config` contains:  
+  
+    Host myhost  
+    ForwardAgent yes  
+  
+Use forward agent:  
   
     local> ssh <my-host>  
-    my-host> ssh -T <another-host>  
+    my-host> ssh <another-host>  
   
   
 <!-- 2014-01-14 -->  
@@ -58,7 +67,7 @@ View ssh sessions with start and end times:
 ## 2013  
 <!-- 2013-01-05 -->  
 ### (ssh, ssh-agent, add and remove keys)  
-To see keys in ssh-agent:   
+Make sure key is in ssh-agent:  
   
     ssh-add -L  
   
@@ -74,7 +83,7 @@ To add key to ssh-agent:
 ## 2010  
 <!-- 2010-01-13 -->  
 ### (ssh, remote script, sudo, cleartext, no visible password)  
-To use ssh to launch a remote script that uses sudo, pass the `-t` flag:   
+To use ssh to launch a remote script that uses sudo, pass the `-t` flag:  
   
     ssh -l user host -t 'sudo ls'  
   
