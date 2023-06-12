@@ -16,3 +16,4 @@ If you find these notes useful, please consider following my current project, [d
 [typescript notes](notes/typescript.html)  
 [typescript_new_project notes](notes/typescript_new_project.html)  
 [xcode notes](notes/xcode.html)  
+[yum notes](notes/yum.html)  
