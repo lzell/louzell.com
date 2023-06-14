@@ -1,4 +1,38 @@
 ## 2023  
+<!-- 2023-06-14 -->  
+### (typescript, similarity, type, interface, syntax)  
+    interface X {  
+      a: number  
+    }  
+  
+is mostly the same as:  
+  
+    type X = {  
+      a: number  
+    }  
+    
+The only difference is `type X` can't be reopened.  
+  
+Source: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces  
+  
+### (typescript, optional)  
+The `a` member is optional in this definition:  
+  
+    type X = {  
+      a?: number  
+    }  
+  
+This is different than:  
+  
+    type Y = {  
+      a: number | null  
+    }  
+  
+Observe:  
+  
+    const x: X = {} # => ok  
+    const y: Y = {} # => Property 'a' is missing in type '{}' but required in type 'Y'  
+  
 <!-- 2023-06-02 -->  
 ### (typescript, named arguments, hack, destructuring, default values for tests)  
   
