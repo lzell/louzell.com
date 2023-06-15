@@ -1,4 +1,14 @@
 ## 2023  
+<!-- 2023-06-15 -->  
+### (figma, plugin API, exploration)  
+Get the color of the current selection:  
+  
+    figma.currentPage.selection[0].fills[0]  
+  
+Print readable 2d array in console, use `console.table`:  
+  
+    console.table(figma.currentPage.selection[0].fills[0].gradientTransform)  
+  
 <!-- 2023-05-17 -->  
 ### (figma plugin, getting started)  
   
