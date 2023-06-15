@@ -15,6 +15,7 @@ Toggle console                              `cmd+shift+y`
 Show autocomplete suggestions               `ctrl+space`  
 Run                                         `cmd+r`  
 Stop                                        `cmd+.`  
+Format code (indent, reindent, format)      `ctrl+i`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  
