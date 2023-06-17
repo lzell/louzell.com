@@ -172,7 +172,7 @@ In this example, I'm renaming the Xcode project 'RenameMe' to 'GreatProject':
   
     rename s/RenameMe/GreatProject/ ./*  
     rename s/RenameMe/GreatProject/ ./GreatProject/*  
-    find * -type f | LC_CTYPE=C xargs sed -i '' 's/RenameMe/GreatProject/g'  
+    find * -type f | LC_CTYPE=C xargs -I {} sed -i '' 's/RenameMe/GreatProject/g' '{}'  
   
 ## 2017  
 <!-- 2017-04-10 -->  

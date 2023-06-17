@@ -1,4 +1,56 @@
 ## 2023  
+<!-- 2023-06-16 -->  
+### (typescript, repl, noUnusedLocals, ts-node)  
+I add `noUnusedLocals` as a compilation flag in `tsconfig.json`.  
+The only downside is the `ts-node` repl becomes unusable.  
+Fix by invoking `ts-node` with   
+  
+    ts-node -O '{"noUnusedLocals": false}'  
+  
+Source: [Stackoverflow comment](https://stackoverflow.com/questions/52193529/is-it-possible-to-import-a-typescript-into-a-running-instance-of-ts-node-repl#comment118473385_52193582)  
+  
+### (typescript, generic parameter conforms to type)  
+Use the `extends` keyword. Read it as 'satisfies' in this case (there is really no extending happening):  
+  
+    function myFn<T extends TypeA|TypeB>(...)  
+  
+### (typescript, discriminate types in heterogenous array)  
+Here is an attempt to generically filter a heterogenous array by a type  
+supplied by the caller. I may return to it:  
+  
+    // Creates a heterogenous array of Xs and Ys, and attempts to write  
+    // a generic selector to discriminate out Xs in a type-safe way.  
+    interface X {  
+      type: 'x'  
+    }  
+      
+    interface Y {  
+      type: 'y'  
+    }  
+      
+    type Sum = X | Y  
+    function select<T extends Sum, U extends 'x' | 'y'>(list: Array<Sum>, u:U): Array<T> {  
+        // I would expect this to throw a compile time error for callers where  
+        // T and U are mismatched.  
+        const dummy: T['type'] = u  
+        const isDesiredType = (h: Sum): h is T => h.type === u  
+        return list.filter(isDesiredType)  
+    }  
+      
+    var myList: Array<X|Y> = [{type: 'x'}, {type: 'y'}]  
+      
+    // This works, yay!  
+    const xs: Array<X> = select(myList, 'x')  
+      
+    // This does not throw a compile time error:  
+    const ys: Array<Y> = select(myList, 'x')  
+    // Error ------ ^ ------------------ ^  
+  
+  
+  
+### (typescript, discriminate, infer type, bookmark)  
+https://www.typescriptlang.org/docs/handbook/advanced-types.html  
+  
 <!-- 2023-06-14 -->  
 ### (typescript, similarity, type, interface, syntax)  
     interface X {  
