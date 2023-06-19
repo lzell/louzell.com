@@ -1,4 +1,13 @@
 ## 2023  
+<!-- 2023-06-18 -->  
+### (typescript, remove property, equivalent of python del)  
+  
+    interface X {  
+      y?: number  
+    }  
+    var x: X = {y: 1}  
+    delete x.y   
+  
 <!-- 2023-06-16 -->  
 ### (typescript, repl, noUnusedLocals, ts-node)  
 I add `noUnusedLocals` as a compilation flag in `tsconfig.json`.  
