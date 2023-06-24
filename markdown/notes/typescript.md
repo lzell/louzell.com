@@ -1,5 +1,15 @@
 ## 2023  
 <!-- 2023-06-18 -->  
+### (typescript, jest, mocks, bookmarks)  
+Examples to follow:  
+https://stackoverflow.com/a/60007123/143447  
+https://stackoverflow.com/a/60448657/143447  
+https://jestjs.io/docs/mock-functions  
+  
+Helpful matchers:  
+ - toHaveBeenCalledTimes(1)  
+ - toBeCalledWith(myParams)  
+  
 ### (typescript, remove property, equivalent of python del)  
   
     interface X {  

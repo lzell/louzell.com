@@ -1,4 +1,12 @@
 ## 2023  
+<!-- 2023-06-19 -->  
+### (spread operator, esbuild, figma, runtime error)  
+The usage of spreads leads to runtime errors when Figma plugins run.  
+The fix is to pass `--target=es6` to the bundler, even if it is already set in `tsconfig.json`.  
+I bundle with:  
+  
+    esbuild src/main.ts --bundle --target=es6 --outfile=dist/main.js  
+  
 <!-- 2023-06-15 -->  
 ### (figma, plugin API, exploration)  
 Get the color of the current selection:  
