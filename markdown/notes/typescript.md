@@ -1,4 +1,46 @@
 ## 2023  
+  
+<!-- 2023-06-25 -->  
+### (typescript, variable, constant, function type)  
+Type a void to void function as follows:  
+  
+    const x: () => void = () => {}  
+    x()  
+  
+Type a boolean to void function:  
+  
+    const x: (y: boolean) => void = (y) => {}  
+    x(true)  
+  
+Type a void to boolean function:  
+  
+    const x: () => boolean = () => { return true }  
+    x()  
+  
+### (typescript, type guard)  
+```  
+const isSolid = (paint: Paint): paint is SolidPaint => paint.type === "SOLID"  
+const back = figma.currentPage.backgrounds.find(isSolid)  
+```  
+  
+Actually, don't do that. Do this:   
+https://www.typescriptlang.org/docs/handbook/advanced-types.html  
+  
+### (typescript, gotcha)  
+`[]` is truthy, e.g. `!![] => true`  
+  
+### (ctags support, typescript)  
+Do not install `ctags`. Install `universal-ctags` instead.  
+  
+### (first character of string)  
+const firstChar = "my string".slice(0,1)  
+  
+### (debugger, repl, pdb)  
+Set breakpoint in source with `debugger`  
+Kick off script with `node inspect ...`  
+Most shortcuts are the same as pdb, except:  
+Use `p <expr>` instead of symbol name directly  
+  
 <!-- 2023-06-18 -->  
 ### (typescript, jest, mocks, bookmarks)  
 Examples to follow:  
@@ -223,6 +265,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
     /^[a-z]$/i.test('A')  
   
   source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp  
+  Also see `match`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match  
   
   
 ### (typescript, javascript, checking for null or undefined)  
