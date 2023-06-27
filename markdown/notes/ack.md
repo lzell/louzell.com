@@ -36,6 +36,16 @@ Make sure `export ACKRC=".ackrc"` is in my shell profile (`~/.bash_profile`)
   
 The `~/.ackrc` file can be supplemented with project-specific `.ackrc` files in the project root.  
   
+  
+### (ack in vim)  
+Add `Plug 'mileszs/ack.vim'` to `~/.vimrc`, then:  
+  
+    :source ~/.vimrc  
+    :PlugInstall  
+  
+Then use `:Ack pattern`  
+Follow symlinks with `:Ack --follow pattern`  
+  
 <!-- 2021-10-11 -->  
 ### (ack search files with specific extension)  
 If file type is built in, use:  
