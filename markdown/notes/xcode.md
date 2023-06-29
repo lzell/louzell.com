@@ -16,6 +16,8 @@ Show autocomplete suggestions               `ctrl+space`
 Run                                         `cmd+r`  
 Stop                                        `cmd+.`  
 Format code (indent, reindent, format)      `ctrl+i`  
+Interface builder quick add                 `cmd+shift+l`  
+Interface builder toggle inspect panel      `cmd+opt+0`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  
