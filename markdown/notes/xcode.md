@@ -1,4 +1,14 @@
 ## 2023  
+<!-- 2023-06-29 -->  
+### (xcode, lldb, debugger, view image)  
+It's helpful to view intermediate images when debugging image transformation code.  
+  
+Steps:  
+- Encounter a breakpoint in transformation code  
+- Tap the 'Show variables view' button in bottom right of debug area  
+- Highlight the image variable  
+- Press spacebar  
+  
 <!-- 2023-06-05 -->  
 ### (xcode, more shortcuts)  
 Returning to Apple work. Refresher:  
