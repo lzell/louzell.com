@@ -28,6 +28,7 @@ Stop                                        `cmd+.`
 Format code (indent, reindent, format)      `ctrl+i`  
 Interface builder quick add                 `cmd+shift+l`  
 Interface builder toggle inspect panel      `cmd+opt+0`  
+Simulator switch to dark mode               `cmd+shift+a`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  
