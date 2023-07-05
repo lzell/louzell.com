@@ -1,5 +1,5 @@
 <!-- 2023-07-02 -->  
-### (ffmpeg, convert mp4 to animated gif, iOS simulator recordings)  
+### (ffmpeg, convert mp4 to animated gif)  
 ffmpeg -i myFile.mp4 -r 8 myFile.gif  
   
 <!-- 2013-06-17 -->  
