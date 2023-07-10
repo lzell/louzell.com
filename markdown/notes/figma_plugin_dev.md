@@ -1,4 +1,9 @@
 ## 2023  
+  
+<!-- 2023-07-09 -->  
+Syntax, in the friends of Figma discord, believes that the plugin sandbox is powered by QuickJS:  
+https://bellard.org/quickjs/  
+  
 <!-- 2023-06-19 -->  
 ### (spread operator, esbuild, figma, runtime error)  
 The usage of spreads leads to runtime errors when Figma plugins run.  

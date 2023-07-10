@@ -4,6 +4,7 @@ ctags.md
 emacs.md
 figma_plugin_dev.md
 ffmpeg.md
+imagemagick.md
 liquid_js.md
 opensnoop.md
 pandoc_markdown.md
