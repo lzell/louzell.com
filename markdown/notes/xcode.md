@@ -17,11 +17,11 @@ Returning to Apple work. Refresher:
 Reveal file in project tree                 `cmd+shift+j`  
 Toggle project drawer                       `cmd+0`  
 Toggle inspector drawer                     `cmd+opt+0`  
+Toggle console and debug panel              `cmd+shift+y`  
 Navigate between headings in project drawer `cmd+1` through `cmd+9`  
 Go back                                     `cmd+ctrl+left-arrow`  
 Go forward                                  `cmd+ctrl+right-arrow`  
 Fuzzy file search                           `cmd+shift+o`  
-Toggle console                              `cmd+shift+y`  
 Show autocomplete suggestions               `ctrl+space`  
 Run                                         `cmd+r`  
 Stop                                        `cmd+.`  

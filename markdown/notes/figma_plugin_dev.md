@@ -1,8 +1,34 @@
-## 2023  
+<!-- 2023-07-15 -->  
+### (codegen, showUI)  
+It is not normally allowed to call `figma.showUI()` in a codegen plugin, but there is an exception.  
   
-<!-- 2023-07-09 -->  
-Syntax, in the friends of Figma discord, believes that the plugin sandbox is powered by QuickJS:  
-https://bellard.org/quickjs/  
+Quoting from 'Jake (figma)' in the Friends of Figma discord channel:  
+  
+ > one thing i did want to add here is that there is one scenario where you can show a ui with a codegen plugin. you can add an action to your preferences menu, and when it is clicked, open up a ui window.  
+   https://www.figma.com/plugin-docs/api/properties/figma-codegen-on/#signature  
+  
+ >  something like:  
+  
+ >     figma.codegen.on('preferenceschange', ({ propertyName }) => {  
+ >       if (propertyName === "myThing") {  
+ >         figma.showUI("...");  
+ >       }  
+ >     });  
+     
+ >  would require an action type preference in manifest.json...  
+  
+ >     {  
+ >       // ...  
+ >       "codegenPreferences": [  
+ >         {  
+ >           "itemType": "action",  
+ >           "propertyName": "myThing",  
+ >           "label": "Example action that opens ui"  
+ >         }  
+ >       ]  
+ >       // ...  
+  
+source: https://discord.com/channels/675194100147945497/1129433678255235102/1129463367195709460  
   
 <!-- 2023-06-19 -->  
 ### (spread operator, esbuild, figma, runtime error)  

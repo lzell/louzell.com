@@ -316,6 +316,7 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
     x.map(y => y + 1)  
   
 ### (typescript, min, max, clamp)  
+  
     Math.max(<a>, <b>)  
     Math.min(<a>, <b>)  
   
@@ -326,5 +327,11 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
     "hello".repeat(2)  
   
 ### (typescript, multiline string)  
+  
     `hello  
     world`  
+  
+If indented, the above will contain whitespace before 'world'. An alternative:  
+  
+    'hello\n' +   
+    'world'  

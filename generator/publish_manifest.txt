@@ -11,6 +11,7 @@ pandoc_markdown.md
 ruby.md
 serve_https_on_localhost.md
 ssh.md
+swiftui_custom_font.md
 typescript.md
 typescript_new_project.md
 xcode.md

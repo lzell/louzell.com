@@ -17,6 +17,7 @@ If you find these notes useful, please consider following my current project, [d
 [ruby notes](notes/ruby.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
 [ssh notes](notes/ssh.html)  
+[swiftui_custom_font notes](notes/swiftui_custom_font.html)  
 [typescript notes](notes/typescript.html)  
 [typescript_new_project notes](notes/typescript_new_project.html)  
 [xcode notes](notes/xcode.html)  
