@@ -1,3 +1,6 @@
+### (resize png)  
+convert myimage.png -resize 50% myimage-small.png  
+  
 ### (install imagemagick, image magic)  
 brew install ghostscript  
 brew install imagemagick  

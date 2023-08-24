@@ -1,5 +1,9 @@
 ## 2023  
 <!-- 2023-05-23 -->  
+### (opensnoop, watch by process name)  
+  
+    opensnoop -n MyApp  
+  
 ### (opensnoop, install, Amazon Linux 2023)  
   
     dfn install -y bcc-tools  
@@ -9,6 +13,17 @@
   
 ### (opensnoop, enable dtrace on macos, bookmark, sip, csrutil)  
 https://stackoverflow.com/a/60910410/143447  
+  
+How to make opensnoop work with macos Sonoma:  
+  
+- Hold the power key to boot into recovery OS  
+- When the picture of the boot volume appears next to 'Options', tap on 'Options'  
+- Open Utilities > Terminal  
+  
+csrutil disable  
+csrutil enable --without dtrace  
+  
+Reboot  
   
 ## 2021  
 <!-- 2021-06-28 -->  

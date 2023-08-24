@@ -15,6 +15,7 @@ If you find these notes useful, please consider following my current project, [d
 [opensnoop notes](notes/opensnoop.html)  
 [pandoc_markdown notes](notes/pandoc_markdown.html)  
 [ruby notes](notes/ruby.html)  
+[rails7 notes](notes/rails7.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  
 [ssh notes](notes/ssh.html)  
 [swiftui_custom_font notes](notes/swiftui_custom_font.html)  

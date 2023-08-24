@@ -9,6 +9,7 @@ liquid_js.md
 opensnoop.md
 pandoc_markdown.md
 ruby.md
+rails7.md
 serve_https_on_localhost.md
 ssh.md
 swiftui_custom_font.md

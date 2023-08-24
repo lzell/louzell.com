@@ -1,7 +1,12 @@
 ## 2023  
   
+<!-- 2023-07-20 -->  
+### (typescript, annotate, heterogenous array, union, multiple types)  
+  
+    const myConstant: (A|B)[] = [instanceOfA, instanceOfB]  
+  
 <!-- 2023-06-25 -->  
-### (typescript, variable, constant, function type)  
+### (typescript, variable, constant, annotate function type)  
 Type a void to void function as follows:  
   
     const x: () => void = () => {}  

@@ -30,6 +30,9 @@ Interface builder quick add                 `cmd+shift+l`
 Interface builder toggle inspect panel      `cmd+opt+0`  
 Simulator switch to dark mode               `cmd+shift+a`  
 Refresh SwiftUI preview                     `cmd+opt+p`  
+Multiple cursors (adjacent)                 `cmd+shift+down-arrow`  
+Multiple cursors (adjacent)                 `opt mouse-drag`  
+Multiple cursors (non-adjacent)             `ctrl+shift mouse-click`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  

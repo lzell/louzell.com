@@ -1,4 +1,9 @@
 <!-- 2023-06-11 -->  
+### (ack, don't display full file contents, minified files)  
+Use the `-o` flag to avoid dumping a huge amount of text when a minified or bundled file is matched.  
+Another option is ripgrep with the -M flag. See this thread:  
+https://indieweb.social/@louzell/110843136950374386  
+  
 ### (ack shortcut for ignoring js files)  
 Handy for working in typescript:  
   
