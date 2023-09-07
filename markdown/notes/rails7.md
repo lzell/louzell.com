@@ -1,3 +1,35 @@
+### (turbo, link to helpers, delete method, deprecated)  
+This is no longer possible in Rails 7:  
+  
+    link_to "Remove something", my_path, method: :delete  
+  
+Instead, turbo must be used:  
+  
+    link_to "Remove something", my_path, data: { turbo_method: :delete }  
+  
+Or, use a form instead.  
+  
+### (debugging action cable javascript)  
+  
+    cd <my-proj>  
+    vim "$(bundle show actioncable)/app/assets/javascripts/actioncable.esm.js"  
+    :: restart rails server after making modifications!  
+  
+### (rails 7, test redis connection in production)  
+  
+    ./bin/rails c --environment=production  
+    irb> r = Redis.new  
+    irb> r.ping  
+    => "PONG"  
+  
+### (rails 7, generator, add index, add column)  
+Add an indexed column to the db with one generator:  
+  
+    rails g migration add_index_to_rooms uuid:string:index  
+  
+### (rails 7, debug web socket, firefox)  
+View the ActionCable activity at Dev tools > Network > Tap on cable > WS tab > Response subtab  
+  
 ### (rails 7, debug importmap)  
 View importmap with:  
   
@@ -7,7 +39,20 @@ Keep playing with syntax in config/importmap.rb until `importmap json` shows the
   
 Pin an external dependency with:  
   
+    ./bin/importmap pin <dep-name>  
+  
+  
+### (rails 7, add jquery)  
+Add to importmap:  
+  
     ./bin/importmap pin jquery  
+  
+Modify application.js to include:  
+  
+    import jquery from "jquery"  
+    window.$ = jquery  
+    window.jQuery = jquery  
+  
   
 ### (rails 7, styles, scaffolding, dhh demo)  
 https://www.youtube.com/watch?v=mpWFrUwAN88  
@@ -38,11 +83,62 @@ Highlights:
 - Change from one db to another with `rails db:system:change --to=postgresql`  
   
 ### (rails 7, actioncable, websocket, per user)  
+Set up the cable so that it streams to the current user:  
+  
+    // app/channels/application_cable/connection.rb  
+    // Source: https://guides.rubyonrails.org/action_cable_overview.html  
+    module ApplicationCable  
+      class Connection < ActionCable::Connection::Base  
+        include ActionController::Cookies  
+        identified_by :current_user  
+  
+        def connect  
+          self.current_user = find_verified_user  
+        end  
+  
+        def disconnect  
+          puts "#{self.class} Disconnected"  
+        end  
+  
+        private  
+          def find_verified_user  
+            if verified_user = User.find_by_id(cookies.encrypted['_YOUR_APP_NAME_session']['user_id'])  
+              verified_user  
+            else  
+              reject_unauthorized_connection  
+            end  
+          end  
+      end  
+    end  
+  
+  
+    // my_channel.rb  
+    class MyChannel < ApplicationCable::Channel  
+        def subscribed  
+          stream_for current_user  
+        end  
+        ...  
+     end  
+  
 Send notifications to specific user:  
-https://stackoverflow.com/a/43943322/143447  
+  
+    // https://stackoverflow.com/a/43943322/143447  
+    MyChannel.broadcast_to(user, { notification: 'Test message' })  
+  
+Get all cables for a specific user:  
+  
+    ActionCable.server.remote_connections.where(current_user: current_user)  
+  
   
 Question to experiment with:  
 Is the web socket torn down when navigating between pages?  
+  
+URL helpers are not available by default in ActionCable.  
+Use this:  
+  
+    class MyChannel < ApplicationCable::Channel  
+      include Rails.application.routes.url_helpers  
+  
   
 ### (rails, actioncable)  
 Generator to create actions in a channel:  

@@ -1,4 +1,10 @@
-## 2023  
+<!-- 2023-08-28 -->  
+### (ruby, install, 3.2.2, rvm, openssl)  
+I was having problems installing ruby on a friend's machine.  
+Had to use:  
+  
+    rvm install ruby-3.2.2 --with-openssl-dir=$(brew --prefix openssl)  
+  
 <!-- 2023-05-13 -->  
 ### (ruby repl, irb, insert line in existing function)  
 Up arrow to previously executed code in irb  
@@ -56,7 +62,6 @@ or add `IRB.conf[:USE_AUTOCOMPLETE] = false` to `~/.irbrc`
 - Call the generator with `ruby generator.rb`, and observe `myfile.txt` on disk.  
   
   
-## 2019  
 <!-- 2019-06-11 -->  
 ### (rvm upgrade, rvm update ruby version)  
 `rvm get stable`  
@@ -67,7 +72,6 @@ or add `IRB.conf[:USE_AUTOCOMPLETE] = false` to `~/.irbrc`
 ### (rvm, ruby, remove rvm)  
 rvm implode  
   
-## 2018  
 <!-- 2018-08-18 -->  
 ### (rvm, name a version of ruby for local use)  
   
@@ -82,7 +86,6 @@ See where bundler finds a specific gem:
   
     bundle show <gemname>  
   
-## 2015  
 <!-- 2015-04-03 -->  
 ### (ruby koans, assert, testing, education)  
 https://www.rubykoans.com/  
@@ -91,7 +94,6 @@ https://www.rubykoans.com/
 ### (ruby ruby, sexp, lexer, parser, tokenize)  
 http://ruby-doc.org/stdlib-2.2.0/libdoc/ripper/rdoc/Ripper.html  
   
-## 2014  
 <!-- 2014-08-04 -->  
 ### (ruby, find methods defined lower in class tree)  
 List methods on an instance that are defined outside of `Object`:  
@@ -102,7 +104,6 @@ List methods on an instance that are defined outside of `Object`:
         end  
     end  
   
-## 2013  
 <!-- 2013-11-26 -->  
 ### (ruby, irb, faulty ~/.irbrc, debugging)  
 To see why ~/.irbrc is not working properly:  
@@ -156,7 +157,6 @@ https://stackoverflow.com/a/14725405/143447
   
   
 <!-- 2010-06-03 -->  
-## 2010  
 ### (rvm, which rvm)  
 After installing rvm, I was surprised that `which rvm` exited with 1.  
 `rvm` is a function that's sourced into my shell.  
@@ -173,7 +173,6 @@ Start ruby with `ruby -rubygems`, or irb with `irb -rrubygems`, or add this to `
 source: https://tomayko.com/blog/2009/require-rubygems-antipattern  
   
   
-## 2009  
 <!-- 2009-05-15 -->  
 ### (ruby, regex, dot star, does not match new line)  
 Here is an interesting difference:  
