@@ -1,6 +1,9 @@
 <!-- 2023-08-01 -->  
 ## ffmpeg notes  
   
+### How to remove audio  
+Use the `-an` flag  
+  
 ### How to re-compress video  
   
     ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4  

@@ -1,3 +1,13 @@
+## Rails 7 Notes  
+  
+### (testing locally on mobile)   
+Start the server with `./bin/rails s -b 0.0.0.0`  
+Use the following to get my 192.168 IP:  
+  
+    ifconfig | grep 'inet '  
+  
+Browse to 192.168.X.Y:3000  
+  
 ### (turbo, link to helpers, delete method, deprecated)  
 This is no longer possible in Rails 7:  
   

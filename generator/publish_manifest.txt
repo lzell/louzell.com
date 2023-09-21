@@ -5,9 +5,11 @@ emacs.md
 figma_plugin_dev.md
 ffmpeg.md
 imagemagick.md
+homebrew.md
 liquid_js.md
 opensnoop.md
 pandoc_markdown.md
+pyenv.md
 ruby.md
 rails7.md
 serve_https_on_localhost.md
