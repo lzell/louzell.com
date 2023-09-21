@@ -9,7 +9,9 @@ homebrew.md
 liquid_js.md
 opensnoop.md
 pandoc_markdown.md
+pip.md
 pyenv.md
+python.md
 ruby.md
 rails7.md
 serve_https_on_localhost.md

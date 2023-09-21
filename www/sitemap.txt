@@ -5,9 +5,13 @@ https://www.louzell.com/notes/emacs.html
 https://www.louzell.com/notes/figma_plugin_dev.html
 https://www.louzell.com/notes/ffmpeg.html
 https://www.louzell.com/notes/imagemagick.html
+https://www.louzell.com/notes/homebrew.html
 https://www.louzell.com/notes/liquid_js.html
 https://www.louzell.com/notes/opensnoop.html
 https://www.louzell.com/notes/pandoc_markdown.html
+https://www.louzell.com/notes/pip.html
+https://www.louzell.com/notes/pyenv.html
+https://www.louzell.com/notes/python.html
 https://www.louzell.com/notes/ruby.html
 https://www.louzell.com/notes/rails7.html
 https://www.louzell.com/notes/serve_https_on_localhost.html

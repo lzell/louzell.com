@@ -1,3 +1,5 @@
+## pyenv notes  
+  
 ### How to set the global python version  
   
     pyenv install <version>  
