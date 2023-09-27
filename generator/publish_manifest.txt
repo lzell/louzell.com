@@ -3,10 +3,12 @@ certbot.md
 ctags.md
 emacs.md
 figma_plugin_dev.md
+firefox.md
 ffmpeg.md
 imagemagick.md
 homebrew.md
 liquid_js.md
+mac_new_machine.md
 opensnoop.md
 pandoc_markdown.md
 pip.md
