@@ -1,3 +1,10 @@
+### (dnf, yum, AL2023)  
+`dnf` is now the preferred way to install software on AL2023.  
+E.g. `dnf install <package-name>`  
+  
+`ls -l $(which yum)` shows that yum is symlinked to the `dnf-3` executable.  
+All the commands I use below still work.  
+  
 ### (yum, list repos)  
 `sudo yum repolist all`  
   
