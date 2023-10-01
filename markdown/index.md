@@ -20,6 +20,7 @@ If you find these notes useful, please consider following my current project, [R
 [pip notes](notes/pip.html)  
 [pyenv notes](notes/pyenv.html)  
 [python notes](notes/python.html)  
+[redis notes](notes/redis.html)  
 [ruby notes](notes/ruby.html)  
 [rails7 notes](notes/rails7.html)  
 [serve_https_on_localhost notes](notes/serve_https_on_localhost.html)  

@@ -1,9 +1,9 @@
 ## How I configure a new MacOS machine   
   
-### System preference edits  
+### Edits to System Settings  
 <pre>  
 Trackpad > Scroll & Zoom > Uncheck Natural  
-           More Gestures > Swipe between pages > Swipe with three fingers  
+         > More Gestures > Swipe between pages > Swipe with three fingers  
          > Point & Click > select Tap to Click  
 Keyboard > Keyboard > Key Repeat > Fast  
                     > Delay Until Repeat > Short  
