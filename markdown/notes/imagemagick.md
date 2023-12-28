@@ -1,6 +1,9 @@
 ### (resize png)  
 convert myimage.png -resize 50% myimage-small.png  
   
+### (resize and ignore aspect ratio)   
+convert myimage.png -resize 100x100\! myimage-square.png  
+  
 ### (install imagemagick, image magic)  
 brew install ghostscript  
 brew install imagemagick  

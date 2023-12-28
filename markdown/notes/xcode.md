@@ -1,4 +1,26 @@
 ## 2023  
+  
+<!-- 2023-11-30 -->  
+### (xcode, add local development package)  
+Add a SPM package to a sample project, while allowing the package to be edited:  
+  
+    Go to File > Add Package Dependencies  
+    Press the “Add local” button at the button of the window  
+    Choose the folder containing the package  
+  
+Source: https://forums.swift.org/t/how-to-add-local-swift-package-as-dependency/26457/48  
+  
+### (xcode, add or remove swift package)  
+- Cmd+1 to open the Project tab in the Project Navigator  
+- Tap on the project  
+- Select the project (NOT the target) in the secondary sidebar  
+- Select `Package Dependencies` tab  
+- Possibly unnecessary: Tap on the target that depended on the package and remove it from General > Framework, Libraries, and Embedded Content  
+  
+<!-- 2023-10-27 -->  
+### (xcode, instruments, time profiler)  
+Long press the Play button, select Profile (or use cmd+i), select Time Profiler, tap the record button  
+  
 <!-- 2023-06-29 -->  
 ### (xcode, lldb, debugger, view image)  
 It's helpful to view intermediate images when debugging image transformation code.  
@@ -21,11 +43,14 @@ Toggle console and debug panel              `cmd+shift+y`
 Navigate between headings in project drawer `cmd+1` through `cmd+9`  
 Go back                                     `cmd+ctrl+left-arrow`  
 Go forward                                  `cmd+ctrl+right-arrow`  
+Go to compilation errors                    `cmd+5`  
+Browse symbols in currenct file             `ctrl+6`  
 Fuzzy file search                           `cmd+shift+o`  
 Show autocomplete suggestions               `ctrl+space`  
 Run                                         `cmd+r`  
 Stop                                        `cmd+.`  
 Format code (indent, reindent, format)      `ctrl+i`  
+Format single line into multi               `ctrl+m`  
 Interface builder quick add                 `cmd+shift+l`  
 Interface builder toggle inspect panel      `cmd+opt+0`  
 Simulator switch to dark mode               `cmd+shift+a`  
@@ -33,6 +58,9 @@ Refresh SwiftUI preview                     `cmd+opt+p`
 Multiple cursors (adjacent)                 `cmd+shift+down-arrow`  
 Multiple cursors (adjacent)                 `opt mouse-drag`  
 Multiple cursors (non-adjacent)             `ctrl+shift mouse-click`  
+Edit scheme                                 `cmd+shift+comma`  
+Show single editor pane                     `cmd+shift+ctrl+enter`  
+Create docstring (cursor on fn signature)   `cmd+opt+/`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  

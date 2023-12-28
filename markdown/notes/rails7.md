@@ -1,5 +1,32 @@
 ## Rails 7 Notes  
   
+### (hack to include routes in activerecord model)  
+  
+    class Router  
+      include Rails.application.routes.url_helpers  
+  
+      def self.default_url_options  
+        ActionMailer::Base.default_url_options  
+      end  
+    end  
+  
+    Then use `Router.new.my_model_url(@my_model)`  
+  
+Source: https://stackoverflow.com/a/54542949/143447  
+  
+### (rails destroy confirmations)  
+  
+Button:  
+  
+    <%= button_to "Delete", @my_model, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>  
+  
+Link:  
+  
+    <%= link_to "Delete", my_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>  
+  
+### (render text)  
+`render :text` is no longer a thing. Use `render plain: "hi"` instead  
+  
 ### (testing locally on mobile)   
 Start the server with `./bin/rails s -b 0.0.0.0`  
 Use the following to get my 192.168 IP:  
@@ -8,7 +35,7 @@ Use the following to get my 192.168 IP:
   
 Browse to 192.168.X.Y:3000  
   
-### (turbo, link to helpers, delete method, deprecated)  
+### (turbo, link to helpers, delete method, post method, deprecated)  
 This is no longer possible in Rails 7:  
   
     link_to "Remove something", my_path, method: :delete  
@@ -17,7 +44,13 @@ Instead, turbo must be used:
   
     link_to "Remove something", my_path, data: { turbo_method: :delete }  
   
-Or, use a form instead.  
+Or, use a form instead:  
+  
+    <%= button_to "Destroy", @my_model, method: :delete %>  
+  
+Or, write a `data-turbo-method` attribute on the html with the desired verb (post in this case):  
+  
+    <a data-turbo-method="post" href="/users?color=red">enter as red</a>  
   
 ### (debugging action cable javascript)  
   

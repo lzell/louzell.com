@@ -1,6 +1,32 @@
 <!-- 2023-08-01 -->  
 ## ffmpeg notes  
   
+### How to dump metadata  
+  
+Try all of these to dump data from `myfile.mov`  
+  
+    ffprobe -show_entries 'stream_tags : format_tags' myfile.mov  
+    ffprobe -v quiet -print_format json -show_streams myfile.mov  
+    mdls myfile.mov  
+    mp4dump myfile.mov  
+    exiftool myfile.mov  
+    exiftool -v<level> myfile.mov  
+  
+`<level>` can be 1 through 5  
+mp4dump relies on the bento4 homebrew package  
+exiftool relies on the exiftool homebrew package  
+  
+### Loudness normalization  
+  
+Normalize:  
+  
+    ffmpeg -i "IMG_0025.mov" -filter:a loudnorm output.mp4  
+  
+Then increase:  
+  
+  
+ Source: https://trac.ffmpeg.org/wiki/AudioVolume  
+  
 ### How to remove audio  
 Use the `-an` flag  
   

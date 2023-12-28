@@ -62,6 +62,11 @@ Input Sources > Uncheck 'select the previous input source'
               These shortcuts conflict with Xcode's autocomplete (ctrl+space)  
 </pre>  
   
+### Edits to Finder  
+<pre>  
+Finder > Settings > Advanced > Unselect 'Show warning before changing an extension'  
+</pre>  
+  
 ### Creating my ssh key  
   
     ssh-keygen -b 4096 -f ~/.ssh/id_rsa4096_gold -o -a 100  
