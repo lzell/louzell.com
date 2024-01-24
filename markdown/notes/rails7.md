@@ -280,6 +280,8 @@ The master key is stored at (do not check this in!):
   
     config/master.key  
   
+Change master key: https://stackoverflow.com/a/59993704/143447  
+  
 In production, running this:  
   
     EDITOR="/usr/bin/vim" bin/rails credentials:edit  

@@ -1,3 +1,26 @@
+### How to map from a range  
+Subtle syntax difference results in major functional change:  
+  
+    [0..10].map { 1 }  
+    # => [1]  
+  
+    (0..10).map { 1 }  
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  
+  
+### Replace characters with tr  
+  
+    "1337".tr("137", "let")  
+    # => "leet"  
+  
+### Reminder that if/else are expressions in ruby:  
+  
+    a = if true  
+      "hello"  
+    else  
+      "world"  
+    end  
+  
+  
 <!-- 2023-08-28 -->  
 ### (ruby, install, 3.2.2, rvm, openssl)  
 I was having problems installing ruby on a friend's machine.  

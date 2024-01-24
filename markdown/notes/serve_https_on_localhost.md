@@ -12,7 +12,7 @@ Create a fake backend:
   
 Create a self-signed TLS certificate:  
   
-    openssl genrsa 4096 -out localhost.key  
+    openssl genrsa -out localhost.key 4096  
     openssl req -new -x509 -subj "/CN=localhost/" -addext "subjectAltName = DNS:localhost" -nodes -sha256 -key localhost.key -out localhost.pem  
   
 Chrome and safari enforce TLS certs contain a subjectAltName.  
@@ -29,6 +29,8 @@ Trust the cert in keychain:
     sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain localhost.cer  
     :: Open Keychain Access > System and double tap 'localhost'  
     :: Tap the 'Trust' chevron and verify that SSL is set to "Always Trust"  
+  
+If I am building an iOS app, drag `localhost.cer` on to the iOS simulator, and then trust it at `Settings > General > About > Certificate Trust Settings > "Enable Full Trust for Root Certificates"`  
   
 Install nginx  
   
@@ -78,3 +80,6 @@ Browse in Chrome or Safari to https://localhost (Firefox doesn't trust self sign
 Stop nginx:  
   
     nginx -s stop  
+  
+Debug by tailing logs at `/opt/homebrew/var/log/nginx/*`  
+Also see config at `/opt/homebrew/etc/nginx/nginx.conf`  

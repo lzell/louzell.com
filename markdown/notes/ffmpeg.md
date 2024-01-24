@@ -32,12 +32,18 @@ Use the `-an` flag
   
 ### How to re-compress video  
   
+Higher `-crf` numbers perform more compression:  
+  
     ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4  
   
 source: https://unix.stackexchange.com/questions/28803/how-can-i-reduce-a-videos-size-with-ffmpeg  
   
 ### How to cut parts of video with no audio  
 See https://github.com/WyattBlue/auto-editor  
+  
+### How to speed up a video that doesn't have audio  
+  
+    ffmpeg -i speedup.mov -filter:v "setpts=0.8*PTS" speedup2.mov   
   
 ### How to speed up video and audio together without affecting voices  
   

@@ -1,3 +1,17 @@
+### (dnf, yum, update AL2023)  
+When I see the message:  
+  
+    A newer release of "Amazon Linux" is available.  
+    Run "/usr/bin/dnf check-release-update" for full release...  
+  
+Run this to update:  
+  
+    sudo /usr/bin/dnf upgrade --releasever=2023.2.20231026  
+  
+See current version of Amazon Linux:  
+  
+    rpm -q system-release  
+  
 ### (dnf, yum, AL2023)  
 `dnf` is now the preferred way to install software on AL2023.  
 E.g. `dnf install <package-name>`  

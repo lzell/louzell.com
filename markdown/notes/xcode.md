@@ -50,6 +50,8 @@ Show autocomplete suggestions               `ctrl+space`
 Run                                         `cmd+r`  
 Stop                                        `cmd+.`  
 Format code (indent, reindent, format)      `ctrl+i`  
+Indent code                                 `cmd+]`  
+Deindent code                               `cmd+[`  
 Format single line into multi               `ctrl+m`  
 Interface builder quick add                 `cmd+shift+l`  
 Interface builder toggle inspect panel      `cmd+opt+0`  
@@ -61,6 +63,9 @@ Multiple cursors (non-adjacent)             `ctrl+shift mouse-click`
 Edit scheme                                 `cmd+shift+comma`  
 Show single editor pane                     `cmd+shift+ctrl+enter`  
 Create docstring (cursor on fn signature)   `cmd+opt+/`  
+Open 'quick actions' in editor              `cmd+shift+a`  
+Set breakpoint                              `cmd+\`  
+Go to line                                  `cmd+l`  
 ------------------------------------------- ------------------------  
   
 Edits to a fresh Xcode install:  
