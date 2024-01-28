@@ -1,5 +1,10 @@
 ## Rails 7 Notes  
   
+### How to clear cache  
+  
+Run `rails tmp:clear` and remove everything in `public/assets`  
+  
+  
 ### (hack to include routes in activerecord model)  
   
     class Router  

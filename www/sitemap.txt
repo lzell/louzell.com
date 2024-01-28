@@ -1,6 +1,8 @@
 https://www.louzell.com/notes/ack.html
 https://www.louzell.com/notes/certbot.html
 https://www.louzell.com/notes/ctags.html
+https://www.louzell.com/notes/dns.html
+https://www.louzell.com/notes/dnssd.html
 https://www.louzell.com/notes/emacs.html
 https://www.louzell.com/notes/figma_plugin_dev.html
 https://www.louzell.com/notes/firefox.html

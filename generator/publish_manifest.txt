@@ -1,6 +1,8 @@
 ack.md
 certbot.md
 ctags.md
+dns.md
+dnssd.md
 emacs.md
 figma_plugin_dev.md
 firefox.md

@@ -2,11 +2,13 @@ This is a collection of notes I've taken on programming.
   
 Within a note, entries are dated and prefaced with a list of tags: `(tag1, tag2, ...)`.  
   
-If you find these notes useful, please consider following my current project, [RedMeetBlue](https://www.redmeetblue.com).  
+If you find these notes useful, please consider following my current project, [AIProxy.pro](https://www.aiproxy.pro).  
   
 [ack notes](notes/ack.html)  
 [certbot notes](notes/certbot.html)  
 [ctags notes](notes/ctags.html)  
+[dns notes](notes/dns.html)  
+[dnssd notes](notes/dnssd.html)  
 [emacs notes](notes/emacs.html)  
 [figma_plugin_dev notes](notes/figma_plugin_dev.html)  
 [firefox notes](notes/firefox.html)  

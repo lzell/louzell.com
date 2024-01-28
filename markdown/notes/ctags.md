@@ -1,19 +1,20 @@
-<!-- 2023-06-25 -->  
-### (ctags, universal, supported languages, macos)  
-Do not do this: `brew install ctags`  
-This is what I want: `brew install universal-ctags`  
+### How to install ctags on MacOS  
+      
+    brew install universal-ctags  
   
-### (ctags, check language support)  
-`ctags ---list-kinds=all`  
+### How to check language support for ctags  
   
-### (ctags, create tags file)  
-`ctags -R src/*`  
+    ctags ---list-kinds=all  
   
-### (ctags, ignore js files, ignore node modules)  
-`ctags --exclude=*.js --exclude=node_modules -R *`  
+### How to create the `tags` file  
   
-<!-- 2014-05-28 -->  
-### (ctags, vim, cheat sheet)  
+    ctags -R src/*  
+  
+### How to use ctags with typescript ignore `node_modules`  
+  
+    ctags --exclude=*.js --exclude=node_modules -R *  
+  
+### ctags cheat sheet   
 ------------------------------------------- ----------------------  
 Build tags (from shell)                     `ctags -R *`  
 Open vim to a specific tag (from shell)     `vim -t PickupsController`   
@@ -24,10 +25,37 @@ See all matching tags                       `:ts`
 Show autocomplete via ctags                 `ctrl+x ctrl+]`  
 ------------------------------------------- ----------------------  
   
-Also:  
-- Add 'tags' to `.gitexcludes`  
-- Add `set tags=./tags;` to `~/.vimrc`. The semi-colon means "recursively search up"  
+### How to use ctags with racket   
   
-<!-- 2015-09-11 -->  
-### (ctags, racket, scheme)  
-`ctags --language-force=scheme myfile.rkt`  
+    ctags --language-force=scheme myfile.rkt  
+  
+### How to ignore `tags` files in git  
+  
+Add `tags` to `~/.gitexcludes`  
+  
+### How to configure vim for ctags  
+  
+Edit `~/.vimrc`:  
+  
+<pre>  
+    "The semi-colon means "recursively search up"  
+    set tags=./tags; to `~/.vimrc`.   
+  
+    Plug 'vim-scripts/taglist.vim'  
+  
+    " Show tags  
+    noremap <leader>t :TlistToggle<CR>  
+  
+    " Reveal in taglist  
+    nmap <leader><leader>t :TlistHighlightTag<CR>  
+  
+    " Taglist settings  
+    let Tlist_Ctags_Cmd='/usr/local/bin/ctags'  
+    let Tlist_Show_One_File = 1  
+    let Tlist_Exit_OnlyWindow = 1  
+    let Tlist_Use_SingleClick = 1  
+    let Tlist_GainFocus_On_ToggleOpen = 1  
+    let Tlist_Close_On_Select = 0  
+    let Tlist_WinWidth = 30  
+    let Tlist_Auto_Highlight_Tag = 1  
+</pre>  

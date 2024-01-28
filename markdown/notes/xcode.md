@@ -1,4 +1,7 @@
-## 2023  
+### Open an Xcode project from shell  
+  
+    cd ~/dev/my-proj  
+    xed .  
   
 <!-- 2023-11-30 -->  
 ### (xcode, add local development package)  
