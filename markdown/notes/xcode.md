@@ -1,3 +1,7 @@
+### How to view symbolicated crash reports  
+  
+Crash reports are now in Xcode Organizer at `Window > Organizer`  
+  
 ### Open an Xcode project from shell  
   
     cd ~/dev/my-proj  

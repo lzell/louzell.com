@@ -59,7 +59,7 @@ Browse for Joypad:
     dns-sd -B _joypad local  
   
   
-## Where on MacOS is the `dsn_sd.h` header  
+## Where on MacOS is the `dns_sd.h` header  
   
 As of Sonoma 14.2.1:  
   
