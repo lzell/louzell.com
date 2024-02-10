@@ -8,6 +8,7 @@ https://www.louzell.com/notes/figma_plugin_dev.html
 https://www.louzell.com/notes/firefox.html
 https://www.louzell.com/notes/ffmpeg.html
 https://www.louzell.com/notes/imagemagick.html
+https://www.louzell.com/notes/hamiltonzell.html
 https://www.louzell.com/notes/homebrew.html
 https://www.louzell.com/notes/liquid_js.html
 https://www.louzell.com/notes/mac_new_machine.html

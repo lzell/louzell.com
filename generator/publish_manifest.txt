@@ -8,6 +8,7 @@ figma_plugin_dev.md
 firefox.md
 ffmpeg.md
 imagemagick.md
+hamiltonzell.md
 homebrew.md
 liquid_js.md
 mac_new_machine.md
@@ -20,6 +21,7 @@ redis.md
 ruby.md
 rails7.md
 serve_https_on_localhost.md
+ses.md
 ssh.md
 swiftui_custom_font.md
 typescript.md

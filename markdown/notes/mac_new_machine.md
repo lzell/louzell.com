@@ -151,6 +151,17 @@ Change /usr/local ownership:
   sudo chown -R $(whoami):staff /usr/local/*  
   
   
+### Configure Desktop  
+  
+Right click on desktop and select 'Show View Options'  
+    Stack by: none  
+    Sort by: name  
+    Icon size: 32x32  
+    Grid spacing: middle  
+    Text size: 16  
+    Label position: right  
+  
+  
 ### Install latest Xcode  
 developer.apple.com/downloads/more  
   
