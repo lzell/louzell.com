@@ -1,8 +1,7 @@
-## 2023  
 <!-- 2023-04-30 -->  
-### (certbot, install certbot, al2023, amazon linux 2023, use python)  
+### How to install certbot on AL2023  
   
-To install the initial certificate:  
+To install the initial the letsencrypt certificate on Amazon Linux 2023:  
   
     dnf install python3  
     python3 -m venv /opt/certbot  
@@ -34,3 +33,14 @@ Notes:
   - No longer supported: `epel`  
   
 Reference: https://certbot.eff.org/instructions?ws=nginx&os=pip  
+  
+  
+### Where are letsencrypt certs stored on AL2023  
+  
+Certbot files are stored at  
+  
+    /etc/letsencrypt/archive/www.aiproxy.pro  
+  
+and are symlinked to  
+  
+    /etc/letsencrypt/live/www.aiproxy.pro  

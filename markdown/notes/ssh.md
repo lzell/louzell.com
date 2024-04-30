@@ -4,7 +4,7 @@
 `~.`  
   
 ### (sshd log, ssh, Amazon Linux 2023)  
-The ssh log is no longer at /var/log/secure.  
+The ssh log, auth.log, is no longer at /var/log/secure.  
   
 Use:  
     `journalctl -u sshd`  

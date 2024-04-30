@@ -1,3 +1,16 @@
+### (yum, rollback)  
+Get a list of updates with:  
+  
+    yum history list  
+  
+Roll one back with:  
+  
+    yum history undo <ID>  
+  
+Or rollback to a specific version with:  
+  
+    yum history rollback <ID>  
+  
 ### (dnf, yum, update AL2023)  
 When I see the message:  
   
@@ -11,6 +24,13 @@ Run this to update:
 See current version of Amazon Linux:  
   
     rpm -q system-release  
+  
+Update to the latest:  
+  
+     /usr/bin/dnf check-release-update --latest-only --version-only 2>&1 | xargs -I {} sudo dnf upgrade -y --releasever="{}"  
+  
+Also see ~/notes/aws.md   
+  
   
 ### (dnf, yum, AL2023)  
 `dnf` is now the preferred way to install software on AL2023.  
@@ -59,3 +79,7 @@ It seems `epel` is no longer compatible with Amazon Linux 2023.
 Posted on twitter here: https://twitter.com/louzell_/status/1668062601308413954  
 If someone figures it out please let me know.  
 It used to be possible to modify `/etc/yum.repos.d/epel.repo` and set `enabled` to 1, but that file no longer exists.  
+  
+### (yum, al2023, install ffmpeg)  
+There is no package that I could find.  
+See notes/ffmpeg.html for installing from source  

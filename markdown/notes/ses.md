@@ -12,14 +12,16 @@ Go to [SES account dashboard](https://us-east-2.console.aws.amazon.com/ses/home?
 Be careful to start in the correct region (Ohio for aiproxy.pro):  
 https://us-east-2.console.aws.amazon.com/ses/home?region=us-east-2#/account  
   
-In the left sidebar go to `Configuration > Configuration sets`  
+In the left sidebar go to `Configuration > Configuration sets`, then:  
+  
 - Create set  
   - Configuration set name: aiproxy  
   - Sending IP pool: default  
   - Reputation options: Enable reputation metrics  
   - Suppression settings: Account level  
   
-In the left sidebar go to `Configuration > Identities`  
+In the left sidebar go to `Configuration > Identities`, then:  
+  
 - Create identity  
   - Identity type: Domain  
     - Domain: aiproxy.pro  
@@ -34,7 +36,8 @@ In the left sidebar go to `Configuration > Identities`
   - Copy DKIM DNS records into cloudflare  
   
   
-In the left sidebar, go to `SMTP settings > Create SMTP credentials`  
+In the left sidebar, go to `SMTP settings > Create SMTP credentials`, then:  
+  
  - User name: ses-smtp-user.aiproxy.20240209-162011  
  - Tap create  
  - On the next screen, copy the SMTP user name and SMTP password  
@@ -54,7 +57,7 @@ Edit `/etc/mail/access` to contain:
   
     Connect:email-smtp.us-east-2.amazonaws.com RELAY  
   
-Edit `/etc/mail/sendmail.mc` to contain (change `aiproxy.pro` to the :  
+Edit `/etc/mail/sendmail.mc` to contain (change `aiproxy.pro`):  
   
     define(`SMART_HOST', `email-smtp.us-east-2.amazonaws.com')dnl  
     define(`RELAY_MAILER_ARGS', `TCP $h 587')dnl  
@@ -91,9 +94,9 @@ If the log is:
   
 it's because the SES account is still in sandbox and I'm trying to send an email **to** an unverified email.  
 Using domain-based verification is not enough to send sandbox emails, even if they are going *to that domain*.  
-This is a bug in AWS; their docs state that this should be possible:  
+This is a bug in AWS; their [docs state](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html) that this should be possible:  
   
-    You can only send mail to verified email addresses *and domains*  
+    | You can only send mail to verified email addresses and domains  
   
 To fix, go to 'Left sidebar > Get set up > Verify email address > Create identity' and submit an email address.  
 Tap through the email verification link and then try sending a test mail again.  
@@ -101,12 +104,7 @@ Tap through the email verification link and then try sending a test mail again.
     echo "body" | mailx -s "subject" -S from="aiproxy support <support@aiproxy.pro>" my-verified-email@domain.tld  
   
   
-Use the launch rake task at ~/dev/aiproxy/infra  
-  
-  
 ### Other ways to test email sending:  
-  
-Don't forget to check my spam folder when hacking!  
   
 #### Send a test email using sendmail:  
   

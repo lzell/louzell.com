@@ -1,6 +1,11 @@
 <!-- 2023-08-01 -->  
 ## ffmpeg notes  
   
+### How to normalize and then convert mono to stereo  
+  
+ffmpeg -i audio.m4a -filter:a loudnorm audio1.m4a  
+ffmpeg -i audio1.m4a -af "pan=stereo|c0=c0|c1=c0" audio2.m4a  
+  
 ### How to dump metadata  
   
 Try all of these to dump data from `myfile.mov`  
@@ -82,3 +87,15 @@ https://osric.com/chris/accidental-developer/2012/04/using-ffmpeg-to-programmati
   
 ### How to install ffmpeg on MacOS  
 brew install ffmpeg  
+  
+  
+### How to install ffmpeg on AL2023  
+  
+    wget https://ffmpeg.org/releases/ffmpeg-7.0.tar.bz2  
+    tar -xjvf ffmpeg-7.0.tar.bz2  
+    cd ffmpeg-7.0  
+    ./configure  
+    make  
+    sudo make install  
+    which ffmpeg  
+    ffmpeg --version  

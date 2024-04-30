@@ -1,5 +1,136 @@
 ## Rails 7 Notes  
   
+### Custom validations  
+  
+    validate do  
+        errors.add(:some_field, 'Error message') unless my_condition  
+    end  
+  
+Or  
+  
+    validate :something_custom  
+  
+    private  
+    def something_custom  
+      if my_condition  
+        errors.add(:some_field, "Error message")  
+      end  
+    end  
+  
+  
+### Rails Turbo Frame gotchas  
+  
+1. In the action that I'm serving the partial page contents from, remember to skip layout rendering:  
+  
+    def my_action  
+        # Define my_action.html.erb and populate it with partial contents  
+        render :layout => false  
+    end  
+  
+2. In the UI element that kicks off the fetch of partial content, specify the turbo frame to update:  
+  
+    <%= turbo_frame_tag "frame-to-update" do %>  
+        Placeholder  
+    <% end %>  
+  
+    <%= link_to 'Update partial contents', my_action_path, data: {turbo_method: :get, turbo_frame: "frame-to-update" } %>  
+  
+Or, without rails form helpers:  
+  
+    <turbo-frame id="frame-to-update">  
+        Placeholder  
+    </turbo-frame>  
+  
+    <a data-turbo-method="get" data-turbo-frame="frame-to-update" href="<%= my_action_path %>">Update partial contents</a>  
+  
+  
+### See all rake tasks  
+  
+    rails --tasks  
+  
+### Update rails  
+- Install the rails gem for the latest release here: https://rubyonrails.org/category/releases  
+- Modify my app's `Gemfile` to use the latest version  
+- Run `rails app:update`  
+- Follow the guidance in `config/initializers/new_framework_default*`  
+  
+### Get state of model before last save  
+  
+Use the `after_save` hook. Say the model has an attribute called `name`,  
+inside the hook use `name_before_last_save` to get the previous value.  
+  
+### Tail puma log in production (AL2023)  
+  
+    journalctl -fu puma  
+  
+### Do not db:rollback in production  
+  
+I have accidentally rolled back farther than intended, and then I have a production data fill on my hands.  
+Instead, make sure I use `STEP=1`. Or better yet be explicit with:  
+  
+    rake db:migrate:down VERSION=20240303...  
+  
+Then, to go the other direction:  
+  
+    rake db:migrate:up VERSION=20240303...  
+  
+Or:  
+  
+    rake db:migrate:redo VERSION=20240303...  
+  
+  
+### How to see the status of production migrations  
+  
+    RAILS_ENV=production ./bin/rails db:migrate:status  
+  
+### Where is migration status stored in mysql?  
+  
+The `schema_migrations` table:  
+  
+    MariaDB [aiproxy_production]> select * from schema_migrations;  
+  
+  
+### How to run a migration in code  
+  
+Careful with this. It will not modify the `schema_migrations` table:  
+  
+    ./bin/rails c --environment=production  
+    require "./db/migrate/20240303150054_create_dynamo_tokens_table.rb"  
+    CreateDynamoTokensTable.new.down  
+  
+  
+### Where is the validation API defined?  
+  
+    activemodel-7.0.7/lib/active_model/validations/validates.rb line 106  
+  
+### How to view active record errors  
+  
+    my_model.errors.full_messages  
+  
+### How to force quit puma in dev  
+  
+Occassionally I find myself needing to do this:  
+  
+    rm aiproxy/dashboard/tmp/pids/server.pid  
+    pkill puma  
+  
+If that doesn't work, try:  
+  
+    lsof -i :3000  
+    :: find the ruby process  
+    kill -9 <id>  
+  
+Or  
+      
+    ps aux | grep puma | grep -v grep | awk '{print $2}' | xargs kill  
+  
+  
+  
+### How to clean up default rails routes  
+  
+Follow these instructions to get rid of all the `/rails/conductor/action_mailbox` routes:  
+https://www.youtube.com/watch?v=IDsYWrsmO9g  
+  
 ### How to clear cache  
   
 Run `rails tmp:clear` and remove everything in `public/assets`  
@@ -281,6 +412,18 @@ Environment credentials key is stored at (do not check this in!):
   
     config/credentials/<environment>.key  
   
+If I edit development credentials:  
+  
+    ./bin/rails credentials:edit --environment=development  
+  
+    stripe:  
+      publishable_key: <snip>  
+      secret_key: <snip>  
+  
+I can reference the secret at runtime with:  
+  
+    Rails.application.credentials.stripe.secret_key  
+  
 The master key is stored at (do not check this in!):  
   
     config/master.key  
@@ -291,7 +434,10 @@ In production, running this:
   
     EDITOR="/usr/bin/vim" bin/rails credentials:edit  
   
-chnages the file contents at config/credentials.yml.enc  
+changes the file contents at config/credentials.yml.enc  
+  
+I prefer not to use `credentials:edit` without an environment,  
+instead relying upon `config/credentials/development.*` and `config credentials/production.*`  
   
 ### (rails credentials, debugging)  
 If in production I get the error:   

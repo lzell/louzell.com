@@ -1,3 +1,20 @@
+### Xcode phantom errors  
+Clear derived data (located at `~/Library/Developer/Xcode/DerivedData`)   
+AND remove `MyApp.xcodeproj/project.xcworkspace`  
+  
+### Refresh SPM packages after clearing derived data  
+After clearing derived data, the package dependencies in my Xcode project tree are always red.  
+In Xcode, go to:  
+  
+    File > Packages > Reset Package Caches  
+  
+credit: https://www.reddit.com/r/iOSProgramming/comments/wut32p/comment/ilcjsnq  
+  
+### Try this to improve debugger times  
+  
+See if it improves debugger times  
+https://stackoverflow.com/a/77926174/143447  
+  
 ### How to view symbolicated crash reports  
   
 Crash reports are now in Xcode Organizer at `Window > Organizer`  

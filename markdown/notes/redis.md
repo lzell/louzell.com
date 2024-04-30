@@ -1,5 +1,10 @@
 ## Redis notes  
   
+### Redis dump and log location on AL2023  
+  
+/var/log/redis6/redis6.log  
+/var/lib/redis6/dump.rdb  
+  
 ### How to start redis on macos  
   
     brew install redis  
@@ -30,6 +35,7 @@ Either ctrl-c the redis server process, or
 Start the redis client with:  
   
     redis-cli monitor  
+    redis6-cli monitor  
   
 or  
   

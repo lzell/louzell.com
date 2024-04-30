@@ -1,3 +1,61 @@
+### Ruby threads  
+Get current number of threads with `Thread.list`.  
+  
+Threads are torn down when they run to completion. E.g.  
+  
+    Thread.list #=> [main]  
+    Thread.new { puts "hello world"; sleep(1) }  
+    Thread.list #=> [main, new-thread]  
+    :: wait one second  
+    Thread.list #=> [main]  
+  
+Threads can be killed:  
+  
+    t = Thread.new { sleep(1000) }  
+    t.kill  
+  
+  
+### Ruby get the source location of a method  
+For example, got get the source of the `publish` method on `Redis`:  
+  
+    Redis.new.method(:publish).source_location  
+  
+### Ruby gotcha  
+  
+Time#utc mutates self:  
+  
+    now = Time.now  
+    now.utc  
+    now  
+  
+### Ruby gotcha  
+Closures behave differently depending on if they are defined using `proc` or `lambda`  
+  
+    def a  
+      x = proc { return }  
+      x.call()  
+      puts "You never see me"  
+    end  
+  
+    a() // Doesn't print anything  
+  
+    def b  
+      x = lambda { return }  
+      x.call()  
+      puts "But you do see me"  
+    end  
+  
+    b() // Prints "But you do see me"  
+  
+    def c  
+      x = -> { return }  
+      x.call()  
+      puts "And you see me too"  
+    end  
+  
+    c() // Prints "And you see me too"  
+  
+  
 ### How to map from a range  
 Subtle syntax difference results in major functional change:  
   

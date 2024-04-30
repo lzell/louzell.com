@@ -62,6 +62,7 @@ Input Sources > Uncheck 'select the previous input source'
               These shortcuts conflict with Xcode's autocomplete (ctrl+space)  
 </pre>  
   
+  
 ### Edits to Finder  
 <pre>  
 Finder > Settings > Advanced > Unselect 'Show warning before changing an extension'  
@@ -131,6 +132,7 @@ Clone my various repos for notes:
     git clone ssh://gitbox:/srv/git/repos/system_config.git  
     cd ~  
     ln -sv /Users/lzell/dev/system_config/homedir/.vimrc /Users/lzell  
+    ln -sv /Users/lzell/dev/system_config/bin /Users/lzell/bin  
     [repeat for all dotfiles in system_config/homedir]  
   
   
@@ -149,6 +151,9 @@ Make terminal settings stick:
   
 Change /usr/local ownership:  
   sudo chown -R $(whoami):staff /usr/local/*  
+  
+Edit term numpad settings with `cmd,` > lz (my profile) > Advanced > Uncheck 'Allow VT100 application keypad mode'.  
+If I don't do this, then 9 and 3 on my keyboard numpad have weird behavior in vim.  
   
   
 ### Configure Desktop  
@@ -214,11 +219,15 @@ Install with homebrew:
     universal-ctags  
     vim  
     wget  
+    htop  
   
 Install Spectacle App:  
-  Set cmd+shift+opt+(direction) to left half, upper half, etc.  
-  Disable all 'upper left, lower left, etc' keys as they interfere with helpful Xcode shortcuts  
-  Select "Launch Spectacle at login"  
+Update: Spectacle is no longer maintained. Try Rectangle instead:  
+  brew install --cask rectangle  
+  Uncheck 'next display' and 'previous display' shortcuts  
+  Set cmd+opt+ctrl+(direction) to left half, upper half, etc.  
+  Set cmd+opt+ctrl+space to 'maximize'  
+  Select "Launch Rectangle at login"  
   
 Install gitx-dev, a fork of gitx that works on MacOS. (update 2022-04-12: the download page for this doesn't work anymore)  
   Once installed, GitX > Enable terminal usage  
