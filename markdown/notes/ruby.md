@@ -1,3 +1,48 @@
+### Ruby save file from repl  
+Equivalent of ipython's `%save`:  
+  
+    ./bin/rails c  
+    > Pry.start  
+    > # prototype  
+    > hist --save myfile.rb  
+  
+### Ruby static method style  
+  
+I prefer  
+  
+    class << self  
+      def my_method  
+      end  
+    end  
+  
+Over  
+  
+    def self.my_method  
+    end  
+  
+Becuase it makes it easier to ack/grep for definition of `my_method` without guessing the style  
+  
+  
+### Ruby case statement  
+    x = 'a'  
+    y = case x  
+        when 'a'  
+          1  
+        when 'b'  
+          2  
+        else  
+          3  
+        end  
+  
+Or  
+  
+    x = 'a'  
+    y = case x  
+        when 'a' then 1  
+        when 'b' then 2  
+        else 3  
+        end  
+          
 ### Ruby threads  
 Get current number of threads with `Thread.list`.  
   
@@ -16,7 +61,16 @@ Threads can be killed:
   
   
 ### Ruby get the source location of a method  
-For example, got get the source of the `publish` method on `Redis`:  
+A couple ways to find where a ruby method or class is defined:  
+  
+1. Use `instance_method` in the repl. For example:  
+  
+    irb  
+    require 'mail'  
+    Mail::Sendmail.instance_method(:deliver!) # =>   
+    # => #<UnboundMethod: Mail::Sendmail#deliver!(mail) /Users/lzell/.rvm/gems/ruby-3.2.2/gems/mail-2.8.1/lib/mail/network/delivery_methods/sendmail.rb:64>   
+  
+2. Use the `source_location` helper:  
   
     Redis.new.method(:publish).source_location  
   
@@ -184,6 +238,10 @@ List methods on an instance that are defined outside of `Object`:
           (methods - Object.instance_methods).sort  
         end  
     end  
+  
+Can also try:  
+  
+     ActiveSupport::MessageEncryptor.methods - Object.methods  
   
 <!-- 2013-11-26 -->  
 ### (ruby, irb, faulty ~/.irbrc, debugging)  

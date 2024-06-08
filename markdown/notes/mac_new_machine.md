@@ -60,6 +60,7 @@ Battery > Uncheck 'slightly dim the display while on battery power'
 Input Sources > Uncheck 'select the previous input source'  
               > Uncheck 'select next source in input menu'  
               These shortcuts conflict with Xcode's autocomplete (ctrl+space)  
+Control Center > Focus > Always Show in Menu Bar  
 </pre>  
   
   

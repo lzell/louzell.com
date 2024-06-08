@@ -1,5 +1,47 @@
 ## Rails 7 Notes  
   
+### Update ActiveRecord fields  
+  
+Run validations:  
+  
+    my_model.update(some_field: 1)  
+  
+Skip validations:  
+  
+    my_model.update_attribute(:some_field, 1)  
+  
+### Dump a rails model to json with assocations  
+  
+    my_model.to_json(include: { my_association: {}})  
+  
+or  
+  
+    ActiveSupport::JSON.encode(my_model, include: { my_association: {}})  
+  
+  
+### How to run a specific migration programmatically  
+  
+    migration_version = 20240603120712 # Replace with your specific migration version  
+    migration_context = ActiveRecord::MigrationContext.new('db/migrate', ActiveRecord::SchemaMigration)  
+    migration_context.run(:down, migration_version)  
+    migration_context.run(:up, migration_version)  
+  
+Related: to quiet the logs when running migrations programmatically, especially if inserting a bunch of seed data, use:  
+  
+    ActiveRecord::Schema.verbose = false  
+  
+Source: https://stackoverflow.com/a/69011649/143447  
+  
+  
+### How to run git bisect on a rails regression  
+  
+https://github.com/rails/rails/issues/51910#issuecomment-2130296578  
+  
+### Skip tests and builder in generator  
+  
+    -skip-tests --skip-jbuilder  
+  
+  
 ### Custom validations  
   
     validate do  

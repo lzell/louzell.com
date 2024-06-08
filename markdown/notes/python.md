@@ -1,5 +1,53 @@
 ## python notes  
   
+### Defaultdict usage  
+  
+    from collections import defaultdict  
+    x = defaultdict(str)  
+    x['y'] # => ''  
+  
+### Decode bytes to utf8 string  
+  
+    my_bytes.decode('utf8')  
+  
+### It's ok to define a var in a catch block  
+  
+    # Do not need to define x here  
+    try:  
+        raise ValueError("broken precondition")  
+    except:  
+        x = 1  
+    x += 1  # => 2  
+  
+Huh, same as ruby  
+  
+    begin  
+      raise 'bad'  
+    rescue  
+      x = 1  
+    end  
+    x + 1  # => 2  
+  
+With js I need to define x ahead of time:  
+  
+    let x;  
+    try {  
+      throw Error("Bad");  
+    } catch {  
+      let x = 1;  
+    }  
+    x + 1;  // => 2  
+  
+  
+### Run pytest with verbose output  
+  
+    pytest -svv  
+  
+### Set a breakpoint  
+  
+In modern versions of python `breakpoint()` will suffice.  
+No need to import 'pdb' explicitly.  
+  
 TODO: This file needs to be formatted.  
   
 Also see ~/notes/pip.md  

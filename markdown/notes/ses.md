@@ -79,9 +79,11 @@ Send a test mail
     echo "body" | mailx -s "subject" -S from="aiproxy support <support@aiproxy.pro>" my-verified-email@domain.tld  
   
   
+## How to debug sendmail  
+  
 If emails aren't arriving, check the sendmail logs with:  
   
-    systemctl status mariadb --full --no-pager | view -  
+    systemctl status sendmail --full --no-pager | view -  
     :set nowrap  
   
 Or tail the logs with:  
