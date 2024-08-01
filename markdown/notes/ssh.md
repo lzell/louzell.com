@@ -1,4 +1,6 @@
-## 2023  
+## How to see the version of openssl  
+sshd -v  
+  
 <!-- 2023-05-25 -->  
 ### (ssh, disconnect from stale session)  
 `~.`  

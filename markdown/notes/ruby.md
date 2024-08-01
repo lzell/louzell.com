@@ -1,3 +1,35 @@
+### Ruby equivalent of optional chaining  
+  
+The equivalent of the swift statement:  
+  
+    service_endpoints.endpointable?.path ?? ""  
+  
+is  
+  
+    service_endpoints.endpointable&.path || ""  
+    
+  
+### Ruby gotcha, there is no `first(where:)`  
+  
+Switching back and forth from swift, I wrote this in ruby (simplified):  
+  
+    [1,2,3].first { |x| x == 1 } # => 1  
+  
+It appears to work as intended, but that's only for this special case. Observe:  
+  
+    [1,2,3].first { |x| x == 2 } # => 1  
+  
+Not what I want! The correct equivalent of `first(where:)` is `find`:  
+  
+    [1,2,3].find { |x| x == 2 } # => 2  
+  
+  
+### Ruby assign results of last repl command to variable  
+  
+    1 + 1  
+    x = _  
+    x # => 2  
+  
 ### Ruby save file from repl  
 Equivalent of ipython's `%save`:  
   

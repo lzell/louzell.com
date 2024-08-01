@@ -7,7 +7,6 @@ emacs.md
 ffmpeg.md
 figma_plugin_dev.md
 firefox.md
-hamiltonzell.md
 homebrew.md
 imagemagick.md
 javascript.md

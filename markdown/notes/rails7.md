@@ -1,14 +1,110 @@
 ## Rails 7 Notes  
   
+### How to run scripts  
+  
+Use rails runner. Place scripts in the `scripts` folder, then:  
+  
+    ./bin/rails runner script/backfill.rb --environment=production  
+  
+### Rails check if ActiveRecord model is yet to be saved to DB  
+  
+    my_model.new_record?  
+  
+### Rails URL helpers with param other than `id`  
+  
+It's not enough to specify the param in `config/routes.rb`, such as:  
+  
+    resources :projects, param: :my_uuid  
+  
+I also have to set  
+  
+    class Project < ApplicationRecord  
+      def to_param  
+        my_uuid  
+      end  
+    end  
+  
+  
+### Rails `has_one` gotcha  
+  
+If model A `has_one` B, and you use:  
+  
+    b = a.build_b()  
+  
+Any existing `a.b` is quietly deleted, and this occurs *even if* the new `b` does not pass validation.  
+  
+  
+### Rails URL helper weirdness  
+  
+Use variadic call instead of passing an array. Note the rogue `%2F`:  
+  
+    (ruby) project_device_check_configuration_path([@project, @device_check_configuration])  
+    # => "/projects/abdbf565%2F/device_check_configuration"  
+  
+versus  
+  
+    (ruby) project_device_check_configuration_path(@project, @device_check_configuration)  
+    # => "/projects/abdbf565/device_check_configuration"  
+  
+  
+### How to inspect data in the test db  
+  
+Rails uses transactions by default in test cases. If I breakpoint inside a test and inspect the the contents of the  
+test DB in a mysql client, I find no records. To temporarily disable transactions so that I can inspect DB contents, use:  
+  
+    class MyTest < ActiveSupport::TestCase  
+      self.use_transactional_tests = false  
+      # ...  
+    end  
+  
+  
+### How to create a model that is not backed by the DB  
+  
+  class ProjectUIModel  
+    include ActiveModel::API  
+  
+    attr_accessor :name  
+    validates_presence_of :name  
+  end  
+  
+I wanted this to use the rails (ActionPack) form helpers with a UI model.  
+See the full API description at `~/.rvm/gems/ruby-3.2.2/gems/activemodel-7.1.3.4/README.rdoc`  
+  
+  
+### How to eagerly load associations  
+  
+    Model.includes(:my_association).first  
+  
+Nested:  
+  
+    Model.includes([first_level: [second_level: :third_level]])  
+  
+  
+### How to build associated records  
+  
+For `has_many` and variants, use  
+  
+    my_model.my_associations.build(...)  
+    # or  
+    my_model.my_associations.create(...)  
+  
+For `has_one` use  
+  
+    my_model.build_my_association(...)  
+    # or  
+    my_model.create_my_association(...)  
+  
+  
 ### Update ActiveRecord fields  
   
-Run validations:  
+Run validations and callbacks:  
   
     my_model.update(some_field: 1)  
   
-Skip validations:  
+Skip validations and callbacks:  
   
     my_model.update_attribute(:some_field, 1)  
+  
   
 ### Dump a rails model to json with assocations  
   

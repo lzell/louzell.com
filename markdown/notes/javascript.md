@@ -1,5 +1,169 @@
 # Javascript cheat sheet  
   
+## Javascript function return is consistent between arrow and explicit functions  
+  
+Somehow I got it in my head that arrow function return behavior was different  
+from explicit function return behavior. I thought one exited the outer scope,  
+but that is incorrect. Observe:   
+  
+  
+    function fn(callback) {  
+      callback();  
+    }  
+  
+    function main() {  
+      fn(() => {  
+        return;  
+      });  
+      console.log("You will see me");  
+  
+      fn(function() {  
+        return  
+      });  
+      console.log("You will also see me")  
+    }  
+  
+    main()  
+  
+  
+## Negative index   
+  
+Use `at`:  
+  
+    ['a', 'b', 'c'].at(-1) // => 'c'  
+  
+  
+## for loop  
+  
+If I need an index:  
+  
+    const x = ['a', 'b', 'c'];  
+    for (let i = 0; i < x.length; i++) {  
+        console.log(x[i]);  
+    }  
+  
+If I don't need an index:  
+  
+    const x = ['a', 'b', 'c'];  
+    for (const y of x) {  
+        console.log(y);  
+    }  
+      
+  
+## Serialize object to json  
+  
+Use `JSON.stringify`, the javascript equivalent of python's `json.dumps`.  
+  
+  
+## Javascript filter syntax  
+  
+    [1,2,3].filter(x => x >= 2)  
+  
+Short for:  
+  
+    [1,2,3].filter((x) => x >= 2);  
+  
+The sugary form of the arrow function only works if the closure takes a single  
+argument.  
+  
+  
+## Javascript gotcha, empty array are different references  
+  
+    [] == []  // false  
+    [] === [] // false  
+  
+For comparison with an empty array, use `[].length`.  
+If using a jest matcher, use `toEqual([])` for an empty array.  
+  
+## Javascript truthiness reference  
+  
+    !![]  // => true  
+    !!{}  // => true  
+    !!''  // => true  
+    !!' ' // => false  
+    !!1   // => true  
+    !!null      // => false  
+    !!undefined // => false  
+  
+## Javscript gotcha, adding arrays  
+  
+    [1] + [2] // => '12'  
+  
+Use this instead  
+  
+    [1].concat([2]) // => [1,2]  
+  
+Or, for array union  
+  
+    const x = [1, 2];  
+    const y = [2, 3];  
+    const z = new Set([...x, ...y]);  
+    [...z] // => [1,2,3]  
+  
+  
+## How to match on a regex  
+  
+    "hello".match(/^he/)  
+  
+## How to get slices of an array  
+  
+The equivalent of python's `x[1:]` is `x.slice(1)`  
+  
+## How methods and getters are defined on classes  
+  
+    class C {  
+        myMethod() {  
+            return 1;  
+        }  
+  
+        get myGetter() {  
+            return 2;  
+        }  
+    }  
+  
+    const c = new C()  
+    c.myMethod() // => 1  
+    c.myGetter   // => 2  
+  
+In ES6, methods are defined by only their name, e.g. there is no additional `func` or `def` syntax to match on.  
+This makes it hard to distinguish callsite from definition when grepping a code base.  
+  
+## How to define private methods and properties  
+  
+Use the pound sign. For example:  
+  
+    class C {  
+        #myPrivateMethod() {  
+            return 1;  
+        }  
+    }  
+  
+    const c = new C()  
+    c.myPrivateMethod() // => Uncaught TypeError: c.myPrivateMethod is not a function  
+  
+  
+## How to define classes with instance variables  
+  
+    class C {  
+        constructor(x) {  
+            this.x = x;  
+        }  
+    }  
+  
+  
+## Javascript multiline string  
+  
+If at the zero indent level, or whitespace padding unimportant:  
+  
+    const x = `hello  
+    world`;  
+  
+If at higher indent level:  
+  
+    const x = "hello\n" +   
+              "world"  
+  
+  
 ## Javscript gotcha, this context with arrow functions  
   
 Careful, this does not work as expected:  
@@ -302,12 +466,8 @@ Use `for x of y` instead.
     console.log(myVar.constructor)  
     console.log(myVar.constructor.name)  
   
-(gotchas, javascript, empty arrays are different references)  
-    [] == []  // false  
-    [] === [] // false  
-Use `[].length` instead.  
   
-## How to interpolate strings  
+## How to interpolate strings, string interpolation  
   
     const x = 'hello'  
     console.log(`${x} world`)  

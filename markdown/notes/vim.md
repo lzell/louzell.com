@@ -1,5 +1,62 @@
 # Vim cheat sheet  
   
+## vim ack shortcuts  
+  
+Within the vim ack pane, type `?` to bring up all keyboard shortcuts. Press it again to toggle back.  
+  
+Use `:AckWindow` to search only the current window.  
+  
+Use `:Ack!` to search without jumping to the first result.  
+  
+  
+## Vim hack, open files quickly  
+  
+    vim $(fzf)  
+  
+or  
+  
+    fd <pattern> | view -  
+    :: Use `gf` on file I want  
+  
+## Vim gotcha, greedy matching with +  
+  
+I need to escape the `+` for matching to work as I expect:  
+  
+    grafana-[a-f0-9]\+  
+  
+I still don't understand why I can't do something like this:  
+  
+    grafana-[a-f\d]\+  
+  
+This question led me to discover `perldo`: https://stackoverflow.com/a/13476392/143447  
+  
+Which is neat, but I lose the interactive highlighting  
+      
+  
+## Vim delete to matching brace  
+A nice trick to eliminate a whole branch in confusing code is to place  
+the cursor on opening brace, then `S-v %` to jump to the matching brace in a  
+visual selection, then `d`.  
+  
+  
+## Vim gotcha, undofile not working  
+  
+Make sure to create the undo dir manually. Vim won't automatically create it.  
+  
+    mkdir ~/.vim/undo  
+  
+Then, set this in `~/.vimrc`  
+  
+    set undofile  
+    set undodir=~/.vim/undo/  
+  
+This will make undo span multiple vim sessions.  
+Closing and re-opening vim won't interfere with undo history.  
+  
+  
+## How to delete to the end of the line from cursor  
+`D` in normal mode  
+  
 ## How to use marks  
 - Use `m{A-Za-z}` to set a mark  
 - The capital marks are global and lower case local  
@@ -99,7 +156,13 @@ I modified the 3.12 environment myself with:
     :set fileencoding  
   
   
-## How to format json or pretty print json  
+## How to format json of a visual selection  
+Create the visual selection, then  
+  
+    !jq .  
+  
+  
+## How to format full json file  
 Careful, this is destructive.  
 Open json file in vim, then  
     :%!python -m json.tool  
@@ -286,6 +349,11 @@ Similar to the tip above, use `dta` to delete to the 'a', then `d;` to repeat in
     :vertical resize 80  
     :vertical resize +5  
     :vertical resize -5  
+  
+I use the following mappings:  
+  
+    nmap <Leader>= :vertical resize +5<CR>  
+    nmap <Leader>- :vertical resize -5<CR>  
   
   
 ## How to move between windows  
@@ -624,8 +692,12 @@ Yank some text with `y`
 Open command line with `:`  
 Use `C-r "` to paste it  
   
-There is a shorter way. Place the cursor on a word and `:C-r-w`. Do not let go of control between the `r` and `w`.  
+  
+## How to paste the text under the cursor to the command line  
+  
+There is a shorter way than the approach above. Place the cursor on a word and `:C-r-w`. Do not let go of control between the `r` and `w`.  
 `:C-r-f` also seems to work  
+  
   
 ## How to copy to system clipboard  
   

@@ -1,9 +1,27 @@
 ## Redis notes  
   
+### How to connect from a different host:  
+  
+Edit `/etc/redis6/redis6.conf`:  
+- comment out the `bind` directive  
+- flip `protected-mode yes` to `protected-mode no`  
+  
+sudo systemctl restart redis6  
+  
+denying external connection attempts.  
+  
+### Conf location on AL2023  
+  
+    /etc/redis6/redis6.conf   
+  
+### How to connect to specific host  
+  
+    redis6-cli -h 172.31.7.39   
+  
 ### Redis dump and log location on AL2023  
   
-/var/log/redis6/redis6.log  
-/var/lib/redis6/dump.rdb  
+    /var/log/redis6/redis6.log  
+    /var/lib/redis6/dump.rdb  
   
 ### How to start redis on macos  
   

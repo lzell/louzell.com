@@ -1,5 +1,11 @@
 See also `./dnssd_notes.md`  
   
+## How to get CAA records  
+  
+For some reason, I have to specify the nameserver when I dig against cloudflare:  
+  
+    dig @venkat.ns.cloudflare.com caa aiproxy.pro +answer  
+  
 ## How to use a specific name server with dig  
   
 	dig @8.8.8.8 aiproxy.pro  

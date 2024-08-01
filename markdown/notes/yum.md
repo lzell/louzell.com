@@ -1,3 +1,17 @@
+### (dnf, get version of installed package)  
+  
+    dnf list installed <name>  
+  
+or  
+  
+    dnf info <name>  
+  
+  
+### (dnf, get version available to upgrade)  
+  
+    dnf list available <name>  
+  
+  
 ### (yum, rollback)  
 Get a list of updates with:  
   

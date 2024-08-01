@@ -13,7 +13,6 @@ If you find these notes useful, please consider following my current project, [A
 [ffmpeg notes](notes/ffmpeg.html)  
 [figma_plugin_dev notes](notes/figma_plugin_dev.html)  
 [firefox notes](notes/firefox.html)  
-[hamiltonzell notes](notes/hamiltonzell.html)  
 [homebrew notes](notes/homebrew.html)  
 [imagemagick notes](notes/imagemagick.html)  
 [javascript notes](notes/javascript.html)  
