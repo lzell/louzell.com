@@ -1,4 +1,13 @@
-<!-- 2023-04-30 -->  
+### How to reuse keys, and force renewal  
+- Pass the `--reuse-key` and `--force-renewal` options to certbot.  
+- Can also edit /etc/letsencrypt/renewal/mysite.conf to include:  
+  
+    [renewalparams]  
+    reuse_key = True  
+  
+[Source](https://community.letsencrypt.org/t/where-is-the-renewal-config-file-grammar-documented/157424)  
+  
+https://community.letsencrypt.org/t/where-is-the-renewal-config-file-grammar-documented/157424/2  
 ### How to install certbot on AL2023  
   
 To install the initial the letsencrypt certificate on Amazon Linux 2023:  
