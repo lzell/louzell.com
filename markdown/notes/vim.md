@@ -1,5 +1,35 @@
 # Vim cheat sheet  
   
+## How to start vim without any plugins or configuration  
+Handy for opening huge files in vim.  
+  
+Ignore my vimrc file and all plugins:  
+  
+    vim -u NONE -N  
+  
+## Folds cheat sheet  
+  
+I like to allow a single line to be folded:  
+  
+    set foldminlines=0  
+  
+Fold docstrings:  
+  
+    :set foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*///.*$'  
+    zM  
+  
+Close all folds: `zM`  
+Open all folds:  `zR`  
+Close a single fold: `zc`  
+  
+Open folds as a cursor through them  
+  
+    set foldopen=all   <-- I actually don't like this  
+  
+  
+:set foldmethod=manual  
+  
+  
 ## vim ack shortcuts  
   
 Within the vim ack pane, type `?` to bring up all keyboard shortcuts. Press it again to toggle back.  
@@ -777,6 +807,8 @@ I prefer `viw` because you the cursor can be anywhere within the word, then `y` 
   
   
 ## How to move the viewport without moving the cursor  
+  
+Scroll without the cursor moving:  
   
 Move viewport up: `C-e`  
 Move viewport down: `C-y`  

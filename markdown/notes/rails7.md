@@ -1,5 +1,16 @@
 ## Rails 7 Notes  
   
+### Perform the same JS on document ready and turbo frame load  
+  
+    function myFn() { ... }  
+    document.addEventListener("turbo:frame-load", myFn);  
+    document.addEventListener("DOMContentLoaded", myFn);  
+  
+  
+### Get signups by day  
+  
+    User.group("DATE(created_at)").count  
+  
 ### How to run scripts  
   
 Use rails runner. Place scripts in the `scripts` folder, then:  

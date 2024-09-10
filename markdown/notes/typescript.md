@@ -1,4 +1,7 @@
-## 2023  
+## How to use PropertyKey  
+  
+Use `PropertyKey` in a type where I need `string | number | symbol`  
+  
   
 <!-- 2023-07-20 -->  
 ### (typescript, annotate, heterogenous array, union, multiple types)  

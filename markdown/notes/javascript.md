@@ -1,5 +1,9 @@
 # Javascript cheat sheet  
   
+## Javascript gotcha, creating a date at seconds since epoch  
+  
+Do not use `Date(seconds * 1000)` it is very different from `new Date(seconds * 1000)`  
+  
 ## Javascript function return is consistent between arrow and explicit functions  
   
 Somehow I got it in my head that arrow function return behavior was different  

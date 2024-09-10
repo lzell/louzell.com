@@ -29,6 +29,8 @@ Keyboard > Keyboard > Key Repeat > Fast
                     > Uncheck 'touch bar suggestions'  
                     > Uncheck 'use smart quotes'  
                     > Remove 'omw' from shortcuts  
+        > Keyboard Shortcuts > Mission Control > Uncheck 'Application Windows' for ctrl-down  (needed for tmux)  
+                                               > Uncheck 'Mission control' for ctrl-up        (needed for tmux)  
 Mouse > Scroll direction: Uncheck natural  
           > Secondary click > Click on right side  
           > Increase tracking speed  
@@ -155,6 +157,17 @@ Change /usr/local ownership:
   
 Edit term numpad settings with `cmd,` > lz (my profile) > Advanced > Uncheck 'Allow VT100 application keypad mode'.  
 If I don't do this, then 9 and 3 on my keyboard numpad have weird behavior in vim.  
+  
+Do this so tmux works well for resizing panes with C-b arrow:  
+https://stackoverflow.com/a/69969363/143447  
+It's a little tricky to get right:  
+- Profiles > LZ > Keyboard  
+- Copy the Action for 'ctrl-left'  
+- Tap the plus icon  
+  - Key: up arrow  
+  - Modifier: control  
+  - Action: Send Text  
+  - Paste into the input box, then delete the final D and replace it with A or B  
   
   
 ### Configure Desktop  
