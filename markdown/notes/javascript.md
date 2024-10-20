@@ -1,5 +1,27 @@
 # Javascript cheat sheet  
   
+## Javascript log buffer  
+  
+If `console.log(buf)` prints something like `<Buffer 7b 22 65 76 65 6e...`,  
+use `console.log("%s", buf)` or `console.log(buf.toString())`.  
+  
+For JSON data, I prefer the format of:  
+  
+    console.log("Received ", JSON.parse(myData));  
+  
+to  
+  
+    console.log("Received %s", JSON.parse(myData));  
+  
+because of the pretty colors, and because more of the nested types are displayed.  
+  
+  
+## Javascript append to array  
+  
+Append with `push`  
+Get FIFO element with `shift`  
+Get FILO element with `pop`  
+  
 ## Javascript gotcha, creating a date at seconds since epoch  
   
 Do not use `Date(seconds * 1000)` it is very different from `new Date(seconds * 1000)`  
@@ -166,6 +188,46 @@ If at higher indent level:
   
     const x = "hello\n" +   
               "world"  
+  
+  
+## Javascript gotcha, binding on this  
+  
+This will bite you if you pass fn pointers:  
+  
+    const x = {  
+      y: 1,  
+      z: function() { return this.y }  
+    }  
+  
+    const fn = x.z  
+    fn() // undefined!  
+  
+Can fix it in a couple ways. I think this is most straightforward:  
+  
+    const x = {  
+      y: 1,  
+      z: function() { return this.y }  
+    }  
+    x.z = x.z.bind(x)  
+  
+    // Later...  
+    const fn = x.z  
+    fn() // 1  
+  
+This is also OK, but I think it's easy for the caller to forget the bind:  
+  
+    const x = {  
+      y: 1,  
+      z: function() { return this.y }  
+    }  
+  
+    const fn = x.z.bind(x)  
+    fn() // 1  
+  
+  
+  
+  
+  
   
   
 ## Javscript gotcha, this context with arrow functions  

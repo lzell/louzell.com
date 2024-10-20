@@ -81,6 +81,9 @@ Source: https://news.ycombinator.com/item?id=36785005
 (python, gotchas)  
   https://github.com/satwikkansal/wtfpython  
   
+(pdb, which file am I in)  
+p __file__  
+  
 (pdb, command list)  
   https://docs.python.org/3.6/library/pdb.html#pdbcommand-step  
   `unt` is helpful to get out of a loop  

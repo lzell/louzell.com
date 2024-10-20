@@ -1,5 +1,10 @@
 # Vim cheat sheet  
   
+## Prevent comment from improper indentation in nginx file  
+Comments always want to stick to position 0, unless:  
+  
+    set ft=nginx  
+  
 ## How to start vim without any plugins or configuration  
 Handy for opening huge files in vim.  
   
@@ -511,6 +516,12 @@ Up: `{`
 In visual mode, use `=`  
   
   
+## How to convert to uppercase   
+Toggle a single character in normal mode with `~`  
+Convert to uppercase in visual mode with `U`  
+Convert to lowercase in visual mode with `u`  
+  
+  
 ## How to retab a file from tabs to spaces  
   
     :set expandtab  
@@ -627,6 +638,27 @@ In insert mode, paste register zero with: `C-r C-p 0`
     2j  
     $  
   
+  
+## Vim gotcha, how to do subsitution only within a visual selection  
+By default, `:s`  operators on an entire line, which often trips me up. I make a visual  
+selection of a partial line, then try a substitution, and the substitution applies to the whole  
+line!  
+  
+The trick is to use `\%V` in the subsitution. For example, to convert the first  
+two underscores to plus signs:  
+  
+    a_b_c_d  
+    e_f_g_h  
+  
+place the cusor on `a` and then type `C-v j 3l` then:  
+  
+    :s/\%V_/+/g  
+  
+Or one that I use often for Swift work is to convert snake case to camelCase but only for part  
+of the line (useful for CodingKeys):  
+  
+    :s/\%V\(_\)\(\w\)/\u\2/g  
+      
   
 ## How to reselect the previous visual selection  
 `gv`  
