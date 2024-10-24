@@ -24,10 +24,9 @@ AMI_OHIO_ARM="ami-0be9bc28d157f8475"
 
 # EC2 Availability Zone Ohio
 AZ="us-east-2a"
-DEFAULT_AMI="$AMI_OHIO_ARM"
 
 # EC2 security group for this machine
-SECURITY_GROUP_OHIO="sg-012124125ca39eedc"
+SECURITY_GROUP_OHIO="sg-081fbc6a1a9223df5"
 
 function usage()
 {
@@ -58,31 +57,24 @@ fi
 case $1 in
   nano)
     size="t4g.nano"
-    launch_ami="$DEFAULT_AMI"
     ;;
   micro)
     size="t4g.micro"
-    launch_ami="$DEFAULT_AMI"
     ;;
   small)
     size="t4g.small"
-    launch_ami="$DEFAULT_AMI"
     ;;
   medium)
     size="t4g.medium"
-    launch_ami="$DEFAULT_AMI"
     ;;
   large)
     size="t4g.large"
-    launch_ami="$DEFAULT_AMI"
     ;;
   xlarge)
     size="t4g.xlarge"
-    launch_ami="$DEFAULT_AMI"
     ;;
   2xlarge)
     size="t4g.2xlarge"
-    launch_ami="$DEFAULT_AMI"
     ;;
   *)
     usage
@@ -101,15 +93,15 @@ fi
 run_instances_response_file='.run_instances_response.json'
 describe_instances_response_file='.describe_instances_response.json'
 
-echo "Launch AMI: $launch_ami"
 echo "Size: $size"
 echo "Calling AWS..."
 
-aws ec2 run-instances --image-id "$launch_ami" \
+aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64 \
             --count 1 \
             --instance-type "$size" \
             --security-group-ids "$SECURITY_GROUP_OHIO" \
             --user-data "file://$bootstrap_file" \
+            --subnet-id "subnet-0dcddfad5cda45c56" \
             --placement AvailabilityZone="$AZ" > $run_instances_response_file
 
 instance_id=$(jq -r '.Instances[].InstanceId' < "$run_instances_response_file")
