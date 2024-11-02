@@ -5,6 +5,9 @@
     background-color:#eeeeee;
     padding:10px;
     border-radius: 4px;
+    white-space: pre;
+    overflow-x: auto;
+    display: block;
   }
 
   code {
@@ -15,14 +18,4 @@
     border-radius: 4px;
   }
 
-  body {
-    font-family:monospace;
-    max-width: 55em;
-  }
-
-  h2 {
-    font-family:monospace;
-    font-size:125%;
-    color: #333;
-  }
 </style>

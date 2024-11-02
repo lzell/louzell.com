@@ -1,5 +1,12 @@
 # Vim cheat sheet  
   
+## Prevent pound sign from sticking to zero column  
+`cindent` has this behavior by default.  
+It's annoying for editing markdown that contains code. Disable with:  
+  
+    set cindent  
+    autocmd FileType markdown setlocal cinkeys-=0#  
+  
 ## Prevent comment from improper indentation in nginx file  
 Comments always want to stick to position 0, unless:  
   

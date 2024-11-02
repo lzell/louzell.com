@@ -16,12 +16,11 @@ end
 
 
 SOURCE_PATH = File.expand_path "~/notes"
-SOURCE_PROGRAMS_PATH = File.expand_path "../programs"
+SOURCE_ASSETS_PATH = File.expand_path "../assets"
 DESTINATION_PATH_MARKDOWN = File.expand_path "../markdown"
 DESTINATION_PATH_HTML = File.expand_path "../www"
 DESTINATION_PATH_MARKDOWN_NOTES = File.join DESTINATION_PATH_MARKDOWN, "notes"
 DESTINATION_PATH_HTML_NOTES = File.join DESTINATION_PATH_HTML, "notes"
-DESTINATION_PATH_HTML_PROGRAMS = File.join DESTINATION_PATH_HTML, "programs"
 INDEX_TEMPLATE_PATH = File.expand_path "index.md.erb"
 INDEX_DESTINATION_PATH = File.join DESTINATION_PATH_MARKDOWN, "index.md"
 SITEMAP_DESTINATION_PATH = File.join DESTINATION_PATH_HTML, "sitemap.txt"
@@ -37,7 +36,7 @@ task :write_index do
   puts "Writing #{INDEX_DESTINATION_PATH} from #{INDEX_TEMPLATE_PATH}".green
   file_list_as_markdown = files_in_manifest
     .map(&method(:trim_md_extension))
-    .map { |basename| "[#{basename} notes](notes/#{basename}.html)" }
+    .map { |basename| "[#{basename}](notes/#{basename}.html)" }
     .join("\n")
   result = ERB.new(File.read(INDEX_TEMPLATE_PATH)).result(binding)
   File.write(INDEX_DESTINATION_PATH, result)
@@ -70,13 +69,11 @@ task :copy_notes => [:clean, :write_index] do
   end
 end
 
-# Copies files from <project-dir>/programs to <project-dir>/www/programs/
-task :copy_programs => [:clean] do
-  files_in_programs.each do |f|
-    source = File.join SOURCE_PROGRAMS_PATH, f
-    destination = File.join DESTINATION_PATH_HTML_PROGRAMS, f
-    FileUtils::Verbose.cp source, destination
-  end
+# Copies favicon from <project-dir>/assets/favicon.ico to <project-dir>/www/favicon.ico
+task :copy_favicon => [:clean] do
+  source = File.join SOURCE_ASSETS_PATH, "favicon.ico"
+  destination = File.join DESTINATION_PATH_HTML, "favicon.ico"
+  FileUtils::Verbose.cp source, destination
 end
 
 
@@ -88,7 +85,7 @@ task :preprocess => [:copy_notes] do
     cd #{DESTINATION_PATH_MARKDOWN}
     sed -i '' 's/$/  /g' "#{INDEX_DESTINATION_PATH}"
     cd #{DESTINATION_PATH_MARKDOWN_NOTES}
-    xargs sed -i '' 's/$/  /g' < "#{PUBLISH_MANIFEST_FILE}"
+    grep -v 'spm' #{PUBLISH_MANIFEST_FILE} | xargs sed -i '' 's/$/  /g'
   END
   system cmd, exception: true
 end
@@ -101,14 +98,14 @@ task :generate_html => [:preprocess] do
 
   generate_index_html =<<-END
     cd #{DESTINATION_PATH_MARKDOWN}
-    pandoc -f markdown+autolink_bare_uris -t html --template=#{PANDOC_INDEX_TEMPLATE_FILE} --standalone --metadata title="Lou Zell's notes" --variable title="" -H "../assets/notes.css" "index.md" > "#{DESTINATION_PATH_HTML}/index.html"
+    pandoc -f markdown+autolink_bare_uris -t html --wrap=none --template=#{PANDOC_INDEX_TEMPLATE_FILE} --standalone --metadata title="Lou Zell's notes" --variable title="" -H "../assets/notes.css" "index.md" > "#{DESTINATION_PATH_HTML}/index.html"
   END
 
   generate_html_of_manifest_files =<<-END
     cd #{DESTINATION_PATH_MARKDOWN_NOTES}
     while IFS= read -r f
     do
-      pandoc -f markdown+autolink_bare_uris -t html --template=#{PANDOC_NOTE_TEMPLATE_FILE} --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
+      pandoc -f markdown+autolink_bare_uris -t html --wrap=none --template=#{PANDOC_NOTE_TEMPLATE_FILE} --standalone --metadata title="${f%.md} notes" --variable title="" -H "../../assets/notes.css" "$f" > "#{DESTINATION_PATH_HTML_NOTES}/${f%.md}.html"
     done < "#{PUBLISH_MANIFEST_FILE}"
   END
 
@@ -131,7 +128,7 @@ end
 # Deploys <project-dir>/www to www.louzell.com
 # Requires public ssh keys to be added to infra/bootstrap.userdata.template
 desc "Deploy generated html to louzell.com"
-task :deploy => [:write_sitemap, :generate_html, :copy_programs] do
+task :deploy => [:write_sitemap, :generate_html, :copy_favicon] do
   cmd = %{
     cd #{DESTINATION_PATH_HTML}
     rsync -Lavz -e "ssh -l ec2-user -p 5083" ./ ec2-user@louzell:/srv/www/louzell.com/ --delete
@@ -147,10 +144,6 @@ private
 
   def files_in_manifest
     return File.read(PUBLISH_MANIFEST_FILE).split("\n")
-  end
-
-  def files_in_programs
-    return Dir.glob(File.join(SOURCE_PROGRAMS_PATH, "*")).map { |f| File.basename f }
   end
 
 task default: :generate_html

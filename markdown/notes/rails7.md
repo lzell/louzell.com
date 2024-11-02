@@ -369,6 +369,8 @@ Pin an external dependency with:
   
     ./bin/importmap pin <dep-name>  
   
+Tour of importmap: https://gorails.com/episodes/how-to-use-importmaps-with-rails?autoplay=1  
+  
   
 ### (rails 7, add jquery)  
 Add to importmap:  

@@ -22,6 +22,7 @@ redis.md
 ruby.md
 serve_https_on_localhost.md
 ses.md
+spm_naming_conventions.md
 ssh.md
 swiftui_custom_font.md
 typescript.md
