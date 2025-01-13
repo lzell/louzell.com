@@ -1,5 +1,9 @@
 # Javascript cheat sheet  
   
+## Top level await  
+  
+Top level await is available in ES2022. Make sure to set `package.json` to include `"type": "module"`  
+  
 ## Javascript log buffer  
   
 If `console.log(buf)` prints something like `<Buffer 7b 22 65 76 65 6e...`,  
@@ -33,23 +37,23 @@ from explicit function return behavior. I thought one exited the outer scope,
 but that is incorrect. Observe:   
   
   
-    function fn(callback) {  
-      callback();  
-    }  
+function fn(callback) {  
+  callback();  
+}  
   
-    function main() {  
-      fn(() => {  
-        return;  
-      });  
-      console.log("You will see me");  
+function main() {  
+  fn(() => {  
+    return;  
+  });  
+  console.log("You will see me");  
   
-      fn(function() {  
-        return  
-      });  
-      console.log("You will also see me")  
-    }  
+  fn(function() {  
+    return  
+  });  
+  console.log("You will also see me")  
+}  
   
-    main()  
+main()  
   
   
 ## Negative index   
@@ -177,7 +181,7 @@ Use the pound sign. For example:
     }  
   
   
-## Javascript multiline string  
+## Javascript multiline string (multi-line)  
   
 If at the zero indent level, or whitespace padding unimportant:  
   

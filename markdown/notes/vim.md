@@ -1,5 +1,15 @@
 # Vim cheat sheet  
   
+## Delete everything in front of cursor and enter insert mode  
+C  
+  
+## Search forward for word under cursor  
+Forwards, use asterisk: *  
+Backwards, use pound: #  
+  
+## Delete to end of current line in normal mode  
+S-d  
+  
 ## Prevent pound sign from sticking to zero column  
 `cindent` has this behavior by default.  
 It's annoying for editing markdown that contains code. Disable with:  

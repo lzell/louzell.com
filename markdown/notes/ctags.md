@@ -25,6 +25,10 @@ See all matching tags                       `:ts`
 Show autocomplete via ctags                 `ctrl+x ctrl+]`  
 ------------------------------------------- ----------------------  
   
+### ctags gotcha  
+The config file for universal ctags is different from exuberant ctags.  
+The location I want for universal ctags config is `~/.ctags.d/conf.ctags` *not* `~/.ctags`.  
+  
 ### How to use ctags with racket   
   
     ctags --language-force=scheme myfile.rkt  

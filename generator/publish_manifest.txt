@@ -1,5 +1,4 @@
 ack.md
-certbot.md
 ctags.md
 dns.md
 dnssd.md

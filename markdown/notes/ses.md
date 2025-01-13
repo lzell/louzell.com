@@ -35,6 +35,8 @@ In the left sidebar go to `Configuration > Identities`, then:
   - Tap 'Create'  
   - Copy DKIM DNS records into cloudflare  
   
+Update: See the end of this doc for adding dmarc as well  
+  
   
 In the left sidebar, go to `SMTP settings > Create SMTP credentials`, then:  
   
@@ -149,3 +151,16 @@ Use the results in the following template:
 Send the email:  
   
     openssl s_client -crlf -quiet -starttls smtp -connect email-smtp.us-east-2.amazonaws.com:587 < /etc/mail/email.txt  
+  
+## Dmarc setup  
+  
+I added the following records for aiproxy.pro  
+  
+    type: TXT  
+    Name: _dmarc  
+    Content: "v=DMARC1; p=reject; rua=mailto:<snip>@dmarc-reports.cloudflare.net;"  
+  
+    type: TXT  
+    Name: aiproxy.pro  
+    Content: "v=spf1 include:spf.messagingengine.com include:amazonses.com -all"  
+  

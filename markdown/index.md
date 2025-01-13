@@ -5,7 +5,6 @@ Within a note, entries are dated and prefaced with a list of tags: `(tag1, tag2,
 If you find these notes useful, consider following my current project, [aiproxy.pro](https://www.aiproxy.pro).  
   
 [ack](notes/ack.html)  
-[certbot](notes/certbot.html)  
 [ctags](notes/ctags.html)  
 [dns](notes/dns.html)  
 [dnssd](notes/dnssd.html)  

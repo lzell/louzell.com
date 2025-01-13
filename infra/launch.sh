@@ -19,9 +19,6 @@ set -euo pipefail
 # Get the directory that this script is running within
 SCRIPT_DIR=$(dirname "$0")
 
-# AMI for Amazon Linux 2023
-AMI_OHIO_ARM="ami-0be9bc28d157f8475"
-
 # EC2 Availability Zone Ohio
 AZ="us-east-2a"
 

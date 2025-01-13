@@ -1,3 +1,12 @@
+### How to create new ruby projects  
+  
+mkdir proj  
+cd proj  
+bundle init  
+vim Gemfile  
+:: add my dependencies  
+bundle install  
+  
 ### Ruby equivalent of optional chaining  
   
 The equivalent of the swift statement:  

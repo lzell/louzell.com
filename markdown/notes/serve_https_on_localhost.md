@@ -1,5 +1,5 @@
 <!-- 2023-05-15 -->  
-### How to serve a backend app over https on MacOS  
+### How to serve a backend app over https or wss on MacOS  
   
 I use this technique to host an app server locally on MacOS using nginx and  
 self-signed certificates:  
@@ -46,6 +46,21 @@ Add `/opt/homebrew/etc/nginx/servers/localhost.conf` with the contents (replace 
       server 127.0.0.1:8000;  
     }  
   
+    upstream ws-server {  
+      server 127.0.0.1:6000;  
+    }  
+  
+    map $http_upgrade $unified_backend {  
+        default 'app-server';  
+        websocket 'ws-server';  
+    }  
+  
+    map $http_upgrade $connection_upgrade {  
+        default 'Upgrade';  
+        ''      'close';  
+    }  
+  
+  
     server {  
         listen       443 ssl;  
         server_name  localhost;  
@@ -59,6 +74,8 @@ Add `/opt/homebrew/etc/nginx/servers/localhost.conf` with the contents (replace 
         ssl_ciphers  HIGH:!aNULL:!MD5;  
         ssl_prefer_server_ciphers  on;  
   
+        root /path/to/<project-dir>;  
+  
         location / {  
           proxy_set_header X-Real-IP $remote_addr;  
           proxy_set_header X_FORWARDED_PROTO https;  
@@ -67,10 +84,9 @@ Add `/opt/homebrew/etc/nginx/servers/localhost.conf` with the contents (replace 
           proxy_redirect off;  
           proxy_max_temp_file_size 0;  
   
-          if (!-f $request_filename) {  
-              proxy_pass http://app-server;  
-              break;  
-          }  
+          proxy_pass http://$unified_backend;  
+          proxy_set_header Upgrade $http_upgrade;  
+          proxy_set_header Connection $connection_upgrade;  
        }  
     }  
   
@@ -107,3 +123,23 @@ Still, once iOS Setting was happy with it, I still couldn't use mobile safari to
 I also tried this, which is accepted by MacOS safari and chrome, but is not accepted by iOS settings (the 'Enable Full Trust for Root Certificate' option is not present)  
   
     openssl req -x509 -nodes -newkey rsa:2048 -keyout myrootCA.key -out myrootCA.pem -days 365 -subj "/CN=192.168.1.4" -extensions SAN -config <(echo "[SAN]"; echo "subjectAltName=IP:192.168.1.4")  
+  
+  
+### How to debug  
+  
+#### How to tail nginx logs  
+  
+    tail -f /opt/homebrew/var/log/nginx/*  
+  
+#### How to verify that protocol switch works  
+  
+Watch my websocket upstream for connections, and run this:  
+  
+    curl -i --no-buffer \  
+    -H "Connection: Upgrade" \  
+    -H "Upgrade: websocket" \  
+    -H "Sec-WebSocket-Key: AAAAAAAAAAAAAAAAAAAAAA==" \  
+    -H "Sec-WebSocket-Version: 13" \  
+    https://localhost  
+  
+  

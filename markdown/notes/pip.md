@@ -23,6 +23,17 @@ Commit `requirements.txt` and `requirements.in`. Then
 (Note: Do not use this method for libs. For libs, edit `setup.cfg` instead)  
   
   
+### How to add main branch of lib as a dep  
+  
+Add to `requirements.in`  
+  
+    git+https://github.com/google-gemini/generative-ai-python.git  
+  
+Then  
+  
+    pip-compile  
+  
+  
 ### How to list installed packages  
   
     pip list  
