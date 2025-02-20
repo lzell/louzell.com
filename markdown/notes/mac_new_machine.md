@@ -71,6 +71,11 @@ Control Center > Focus > Always Show in Menu Bar
 Finder > Settings > Advanced > Unselect 'Show warning before changing an extension'  
 </pre>  
   
+Open finder  
+- Tap `cmd /` to show status bar  
+- Tap `cmd opt p` to show path bar  
+Those settings will stick (I hope)  
+  
 ### Creating my ssh key  
   
     ssh-keygen -b 4096 -f ~/.ssh/id_rsa4096_gold -o -a 100  
@@ -260,3 +265,5 @@ Install printer software:
   Restart the printer  
   
 See my [opensnoop notes](https://www.louzell.com/notes/opensnoop.html) for disabling SIP   
+  
+Dictation: use option-uparrow  

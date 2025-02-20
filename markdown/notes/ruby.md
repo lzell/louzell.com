@@ -47,6 +47,16 @@ Equivalent of ipython's `%save`:
     > # prototype  
     > hist --save myfile.rb  
   
+Unfortunately there is no real equivalent to `%load`.  
+This is close though:  
+  
+    > Pry.start  
+    > edit -r myfile.rb  
+    :: the file contents will be executed when I quit the editor  
+  
+source: https://x.com/jakeonrails/status/1881810298560229410  
+  
+  
 ### Ruby static method style  
   
 I prefer  

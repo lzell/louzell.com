@@ -11,9 +11,13 @@ In Xcode, go to:
 credit: https://www.reddit.com/r/iOSProgramming/comments/wut32p/comment/ilcjsnq  
   
 ### Try this to improve debugger times  
+It actually helps a lot! Write this to ~/.lldbinit and restart Xcode:  
   
-See if it improves debugger times  
-https://stackoverflow.com/a/77926174/143447  
+    settings set target.experimental.swift-enable-cxx-interop false  
+  
+Source: https://stackoverflow.com/a/77926174/143447  
+See also some ideas in this thread: https://forums.developer.apple.com/forums/thread/738922  
+Specifically turning off wifi and enforcing that comm is over the usb cable.  
   
 ### How to view symbolicated crash reports  
   
