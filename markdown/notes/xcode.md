@@ -1,3 +1,12 @@
+### Xcode additional test run options  
+Right click in the gutter next to the test for additional run options.  
+Integrates with instruments too.  
+  
+### Xcode swiftUI preview failing  
+Error: "Active scheme does not build this file"  
+Solution: sudo xcodebuild -license  
+https://stackoverflow.com/a/69516573/143447  
+  
 ### Xcode phantom errors  
 Clear derived data (located at `~/Library/Developer/Xcode/DerivedData`)   
 AND remove `MyApp.xcodeproj/project.xcworkspace`  
@@ -7,6 +16,8 @@ After clearing derived data, the package dependencies in my Xcode project tree a
 In Xcode, go to:  
   
     File > Packages > Reset Package Caches  
+  
+I set that to the shortcut ctrl-opt-p in Settings > Keyboard > Shortcuts > Apps > Xcode  
   
 credit: https://www.reddit.com/r/iOSProgramming/comments/wut32p/comment/ilcjsnq  
   

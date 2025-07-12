@@ -3,12 +3,11 @@
 ### How to start python projects  
   
     cd <my-project>  
-    pyenv local 3.8.17  
+    pyenv local 3.12  
     python -m venv venv  
     source venv/bin/activate  
     pip install --upgrade pip  
     pip install pip-tools  
-  
   
 ### How to update dependencies  
   

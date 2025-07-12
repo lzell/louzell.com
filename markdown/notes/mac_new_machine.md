@@ -1,6 +1,15 @@
 ## How I configure a new MacOS machine   
   
 ### Edits to System Settings  
+  
+Try to get mdsync to stop indexing constantly:  
+Settings > Spotlight > Search Privacy > Add the main hardrive.  
+Turn everything off in 'search results' except for 'System settings'  
+  
+Settings > Apple Intelligence & Siri > Turn everything off  
+Tap on 'Delete Siri & Dictation History'  
+Tap on 'About Siri, Dictation & Privacy' and go through every application unchecking 'Learn from this application'  
+  
 <pre>  
 Trackpad > Scroll & Zoom > Uncheck Natural  
          > More Gestures > Swipe between pages > Swipe with three fingers  

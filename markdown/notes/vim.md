@@ -1,5 +1,54 @@
 # Vim cheat sheet  
   
+## Split single line functions into multline  
+  
+- Get this: https://github.com/AndrewRadev/splitjoin.vim  
+- Place cursor on single line function  
+- Punch gS  
+  
+## Get everything by junegunn  
+  
+The guy is amazing. Get vim-plug, fzf, fzf.vim, limelight, and goyo.  
+Watch this https://www.youtube.com/watch?v=aXPQTesFdTI  
+  
+### Vim fzf  
+  
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  
+    Plug 'junegunn/fzf.vim'  
+  
+Lots of good stuff packed into this. A few I like:  
+  
+    :BTags  
+    > fuzzy search buffer tags!  
+  
+    :BLines  
+    > fuzzy search the open buffer for a pattern  
+  
+    :Tags  
+    > fuzzy search the 'tags' file  
+  
+Navigate the window with ctrl-p and ctrl-n. Don't reach for arrow keys  
+  
+## Vim latex  
+https://castel.dev/post/lecture-notes-1/  
+  
+## Pasting over multiple pieces of text  
+I often have this situation where I yank something, and then I want to paste it over text in  
+several locations. The problem is as soon as I paste over the first bit of text, now my  
+register has the stuff I just pasted over.  
+  
+Solution: use "py to yank, then use "pp to paste   
+  
+I could do this:  
+  
+    nnoremap <leader>y "py  
+    nnoremap <leader>p "pp  
+  
+  
+## Delete everything to matching bracket / end / paren  
+Make sure matchit or matchup is installed, then:  
+d%  
+  
 ## Delete everything in front of cursor and enter insert mode  
 C  
   

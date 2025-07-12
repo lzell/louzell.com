@@ -1,5 +1,27 @@
 ## python notes  
   
+### Install a modern version on AL2023  
+  
+https://github.com/amazonlinux/amazon-linux-2023/issues/483#issuecomment-1928446605  
+^ Don't do this. Do this:  
+  
+    sudo dnf install python3.12  
+  
+### Walrus  
+Available in python 3.8+  
+  
+    if (n := "world"):  
+        print(f"{n} hello")  
+  
+### Define all public exports  
+  
+I prefer explicit imports, but I see this often. `__all__` defines what should be imported on `import * from xyz`  
+  
+    __all__ = ["MyClass"]  
+  
+    class MyClass():  
+        pass  
+  
 ### Defaultdict usage  
   
     from collections import defaultdict  

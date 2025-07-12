@@ -1,3 +1,34 @@
+## Typescript debug, which files are being considered  
+  
+    npx tsc --listFiles  
+  
+## Typescript gotcha, tsconfig in single file mode  
+tsconfig.json is not read when tsc is passed a specific file. E.g. tsc  
+myfile.ts will _not_ consider tsconfig.json.  
+  
+You need to pass the flags you are interested in one by one:  
+  
+    npx tsc utils.mjs --noEmit --allowJs --checkJs  
+  
+  
+## Getting the tsc version.  
+  
+Note that if I install with  
+  
+    npm install --save-dev typescript  
+  
+I can compare to any version that I installed with  
+  
+    npm install -g typescript  
+  
+By:  
+  
+    npx tsc --version  
+  
+Versus:  
+  
+    tsc --version  
+  
 ## How to use PropertyKey  
   
 Use `PropertyKey` in a type where I need `string | number | symbol`  
@@ -226,10 +257,6 @@ If I don't supply `a` or `b` they default to values of `hello` and `123`, respec
   
 ### (typescript, cheatsheet, syntax, bookmark)  
   https://www.typescriptlang.org/cheatsheets  
-  
-### (typescript, gotcha)  
-  tsconfig.json is not read when tsc is passed a specific file. E.g. tsc  
-  myfile.ts will _not_ consider tsconfig.json.  
   
 ### (typescript, get class name at runtime)  
   `myObj.constructor.name`  

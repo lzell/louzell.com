@@ -1,5 +1,14 @@
 See also `./dnssd_notes.md`  
   
+## DNS tracing  
+  
+    dig api.aiproxy.pro +trace  
+  
+## Cloudflare and google both have DNS purge features  
+https://dns.google/  
+https://one.one.one.one/purge-cache/  
+DNS checker: https://dnschecker.org/#A/api.aiproxy.pro  
+  
 ## How to get CAA records  
   
 For some reason, I have to specify the nameserver when I dig against cloudflare:  

@@ -191,6 +191,12 @@ Had to use:
   
     rvm install ruby-3.2.2 --with-openssl-dir=$(brew --prefix openssl)  
   
+Update. See notes in ~/notes/openssl.md  
+  
+    brew install openssl@3  
+    brew unlink openssl@3 && brew link openssl@3  
+    rvm install ruby-3.2.7 --with-openssl-dir=/opt/homebrew/opt/openssl@3  
+  
 <!-- 2023-05-13 -->  
 ### (ruby repl, irb, insert line in existing function)  
 Up arrow to previously executed code in irb  

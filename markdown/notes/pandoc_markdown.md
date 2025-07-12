@@ -1,4 +1,9 @@
-## 2023  
+## Pandoc latex to markdown  
+  
+    pandoc problems.tex -o problems.md  
+  
+See also pdflatex which comes with MacTeX. See ~/notes/latex.md  
+  
 <!-- 2023-06-03 -->  
 ### (pandoc, print default template)  
 Publishing markdown to html uses a default pandoc template.  

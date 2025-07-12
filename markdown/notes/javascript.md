@@ -1,5 +1,19 @@
 # Javascript cheat sheet  
   
+## Undefined can be coallesced to null  
+  
+    undefined ?? null // => null  
+  
+## Javascript gotcha, anything can be thrown  
+When you are catching errors, they may not be an `Error`. You can `throw "hello world"` for example.  
+There is an eslint rule to enforce that only errors are thrown:  
+  
+    '@typescript-eslint/only-throw-error': 'error'  
+  
+If I add that, then at least in my own application code I can be sure that the local `error` in  
+my catch handler is an `Error`.  
+  
+  
 ## Top level await  
   
 Top level await is available in ES2022. Make sure to set `package.json` to include `"type": "module"`  

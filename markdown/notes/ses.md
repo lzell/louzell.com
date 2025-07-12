@@ -59,6 +59,12 @@ Edit `/etc/mail/access` to contain:
   
     Connect:email-smtp.us-east-2.amazonaws.com RELAY  
   
+Edit `/etc/mail/sendmail.mc` to comment out (otherwise cron jobs run as root will not email me).  
+There is no practical security threat for commenting this out.  
+Sendmail listens on port 25 and I don't have that exposed through security groups:  
+  
+    dnl # EXPOSED_USER(`root')dnl  
+  
 Edit `/etc/mail/sendmail.mc` to contain (change `aiproxy.pro`):  
   
     define(`SMART_HOST', `email-smtp.us-east-2.amazonaws.com')dnl  
@@ -152,7 +158,7 @@ Send the email:
   
     openssl s_client -crlf -quiet -starttls smtp -connect email-smtp.us-east-2.amazonaws.com:587 < /etc/mail/email.txt  
   
-## Dmarc setup  
+## DMARC setup (this is for SES and fastmail)  
   
 I added the following records for aiproxy.pro  
   

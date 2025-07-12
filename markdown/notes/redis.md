@@ -1,5 +1,20 @@
 ## Redis notes  
   
+### How to see all commands being executed  
+Including which host sent them:  
+  
+    redis6-cli  
+    MONITOR  
+  
+### How to see number of connected clients  
+    redis6-cli  
+    INFO clients  
+  
+### How to get memory stats  
+  
+    redis6-cli  
+    INFO memory  
+  
 ### How to connect from a different host:  
   
 Edit `/etc/redis6/redis6.conf`:  

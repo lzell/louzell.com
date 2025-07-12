@@ -67,6 +67,10 @@ about:logins
     Disable 'Suggestions from the web'  
     Disable 'Suggestions from sponsors'  
   
+## How to turn off chatgpt on select text  
+about:config  
+Set browser.ml.chat.shorcuts false  
+  
   
 ### How to make a new tab blank   
 Settings > Home > Firefox Home Content > Uncheck all except 'Recent activity > Bookmarks'  
